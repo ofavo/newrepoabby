@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-img class="profile-filter" src="assets/carrito.jpg"></ion-img>
+    
+    <ion-avatar (click)="buttonPhotoProfile();" class="profile-avatar">
+      <img [src]="photoProfile ? photoProfile : 'https://www.w3schools.com/howto/img_avatar.png'">
+    </ion-avatar>
+    <div *ngIf="buttonPhoto" class="ion-text-center">
+      <div class="profile-photo">
+        <ion-fab-button (click)="searchProfile();" color="light"><ion-icon name="images-outline"></ion-icon></ion-fab-button>
+      </div>
+      <div class="profile-photo">
+        <ion-fab-button (click)="captureProfile();" color="light"><ion-icon name="camera-outline"></ion-icon></ion-fab-button>
+      </div>
+    </div>
+  </div>
+  <ion-item>
+    <ion-icon name="person-circle-outline"></ion-icon>
+    <ion-input class="profile-input" placeholder="Nombre completo" value="Génesis Ramírez"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="mail-outline"></ion-icon>
+    <ion-input class="profile-input" placeholder="Correo electrónico" value="ateamdev.genesisnr@gmail.com"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="card-outline"></ion-icon>
+    <ion-input class="profile-input" placeholder="DNI" value="22.035.564"></ion-input>
+  </ion-item>
+  <div>
+    <ion-button expand="full" class="profile-btn" (click)="buttonDropdown();" color="light">Cambiar contraseña</ion-button>
+  </div>
+  <div *ngIf="buttonDrop">
+    <ion-item>
+        <ion-icon name="key-outline"></ion-icon>
+        <ion-input class="profile-input" placeholder="Contraseña" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="repeat-outline"></ion-icon>
+        <ion-input class="profile-input" placeholder="Repetir contraseña" type="password" [(ngModel)]="passwordConfirm"></ion-input>
+    </ion-item>
+  </div>
+  <div>
+      <ion-button expand="full" class="profile-btn" (click)="buttonCreditCard();" color="light">Tarjeta de Crédito</ion-button>
+  </div>
+  <div *ngIf="buttonCredit" class="ion-text-center">
+    <ion-img [src]="photo" *ngIf="photo"></ion-img>
+    <div class="profile-tdc">
+      <ion-fab-button (click)="searchPhoto();" color="light"><ion-icon name="images-outline"></ion-icon></ion-fab-button>
+    </div>
+    <div class="profile-tdc">
+      <ion-fab-button (click)="capturePhoto();" color="light"><ion-icon name="camera-outline"></ion-icon></ion-fab-button>
+    </div>
+  </div>
+  <div class="ion-text-center">
+    <ion-button class="profile-btn" color="primary">Guardar Cambios</ion-button>
+</div>
+</ion-content>

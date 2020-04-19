@@ -1,0 +1,37 @@
+<ion-content >
+  <ion-img src="../../assets/image977-5-8-4-1.png"></ion-img>
+  <img src="../../assets/LB.png"/>
+      <ion-card id="container">
+          <ion-card-header>
+              REGISTRO
+          </ion-card-header>
+          <ion-card-content>
+                <ion-item>
+                        <ion-label position="floating">Nombres</ion-label>
+                        <ion-input color="dark" type="email" [(ngModel)]="firstname"></ion-input>
+                </ion-item>
+                <ion-item>
+                        <ion-label position="floating">Apellidos</ion-label>
+                        <ion-input color="dark" type="email" [(ngModel)]="lastname"></ion-input>
+                </ion-item>
+                <ion-item>
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input color="dark" type="email" [(ngModel)]="email" (ionChange)="validateEmail()"></ion-input>
+                </ion-item>
+                <ion-item>
+                        <ion-label position="floating">Contraseña</ion-label>
+                        <ion-input type="password" [(ngModel)]="password"></ion-input>
+                </ion-item>
+                <ion-item>
+                        <ion-label position="floating">Repetir contraseña</ion-label>
+                        <ion-input type="password" [(ngModel)]="passwordConfirm"></ion-input>
+                </ion-item>
+                        <ion-button class="btn-m" *ngIf="buttonActive" (click)="sentData()" >Continuar</ion-button>
+                        <ion-button class="btn-m" *ngIf="!buttonActive" (click)="sentData()" disabled>Continuar</ion-button>
+                          <br />
+                          <a routerLink="/login" class="btn-black">¿Ya tienes cuentas?<br />Desde aquí puedes ingresar</a>
+                 
+          </ion-card-content>
+      </ion-card>
+  </ion-content>
+  

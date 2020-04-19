@@ -1,0 +1,27 @@
+
+
+<ion-content >
+<ion-img src="assets/image977-5-8-4-1.png"></ion-img>
+<img src="assets/LB.png" />
+    <ion-card id="container">
+        <ion-card-header>
+            BIENVENIDO
+        </ion-card-header>
+        <ion-card-content>
+                <ion-item>
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input type="email" [(ngModel)]="email" (ionChange)="validateEmail()"></ion-input>
+                </ion-item>
+                <ion-item>
+                        <ion-label position="floating">Contraseña</ion-label>
+                        <ion-input type="password" [(ngModel)]="password"></ion-input>
+                </ion-item>
+                      <ion-button class="btn-m" *ngIf="buttonActive" (click)="sentData()" >Entrar </ion-button>
+                      <ion-button class="btn-m" *ngIf="!buttonActive" (click)="sentData()" disabled>Entrar </ion-button>
+                        <br />
+                        <a routerLink="/register" class="btn-black">Registrase</a>
+                        <br />
+                        <a class="btn-black" (click)="recoverPassword()">Recuperar Contraseña</a>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

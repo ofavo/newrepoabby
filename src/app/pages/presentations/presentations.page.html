@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="presentations-search">
+    <ion-searchbar placeholder="Buscar" type="text" debounce="500" (ionInput)="serchProduct($event)"></ion-searchbar>
+  </div>
+  <ion-list>
+    <ion-list-header>
+      Presentaciones
+    </ion-list-header>
+
+    <ion-item *ngFor="let datos of datos">
+      <ion-thumbnail slot="start">
+        <img src={{datos.img}} />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{datos.name}}</h2>
+        <h3>{{datos.price}}</h3>
+      </ion-label>
+      <ion-button class="add-btn"color="primary" (click)="addProduct(datos.id, datos.name, datos.price, datos.category, datos.img)">
+        <ion-icon class="add-icon" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="presentModal()">
+          <ion-icon name="cart-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>
