@@ -2,8 +2,104 @@ ion-list-header{
     position: absolute;
     z-index: 1;
 }
+
 ion-item{
     position: relative;
     z-index: 0;
+}
 
+.card-number {
+    display: flex;
+    width: 70%;
+    position: relative;
+}
+
+.card-add {
+    z-index: 3;
+    position: absolute;
+    left: -20px;
+    width: 32px;
+    height: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+    --border-radius: 50px;
+    background: transparent;
+}
+
+.card-remove {
+    z-index: 2;
+    right: 0;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+    --border-radius: 50px;
+    background: transparent;
+}
+
+.card-quantity {
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #f4f7f8;
+    border: 2px solid transparent;
+    color: #546067;
+    position: relative;
+    right: 10px;
+}
+
+.card-total {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 1rem 0;
+    background: #fff;
+}
+
+.card-buy {
+    width: 95%;
+    --border-radius: 50px;
+}
+
+.card-label-w {
+    width: 100%;
+}
+
+.card-title{
+    display: inline-block;
+}
+
+.card-art {
+    display: inline-block;
+    background: white;
+    color: #3c3a3a;
+    border-radius: 20px;
+    position: absolute;
+    right: 1rem;
+    padding: 0.3rem 1rem;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-line-v {
+    width: 1px;
+    height: 60%;
+    background: white;
+    margin: 0 0.5rem;
+}
+
+.card-h2 {
+    width: 88%;
+}
+
+.card-back {
+    --box-shadow: none;
+}
+
+.card-icon {
+    vertical-align: top;
 }
