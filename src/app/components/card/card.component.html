@@ -1,24 +1,37 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-button color="primary" slot="start" (click)="dismiss()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
-    
-    <ion-title>Carrito</ion-title>
+    <ion-button class="card-back" color="primary" slot="start" (click)="dismiss()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+    <ion-title class="card-title">Carrito</ion-title>
+    <div class="card-art">{{products.length}} <ion-icon class="card-icon" name="cart-outline"></ion-icon></div>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<ion-list>
-  <ion-list-header >
-    Su compra 
-  </ion-list-header>
-
-  <ion-item >
-    <ion-thumbnail slot="start">
-      <img src=""/>
-    </ion-thumbnail>
-    <ion-label>
-      
-    </ion-label>
-   
-  </ion-item>
-</ion-list>
+  <ion-list *ngFor="let product of products">
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src={{product.img}} />
+      </ion-thumbnail>
+      <ion-label class="card-label-w">
+        <h2 class="card-h2">{{product.name}}</h2>
+        <h3>{{product.price}}$</h3>
+      </ion-label>
+      <div class="card-number">
+        <ion-button (click)="add(product.id)"class="card-add" color="primary">
+          <ion-icon class="add-icon" name="add-outline"></ion-icon>
+        </ion-button>
+        <ion-input class="card-quantity" value={{product.quantity}} type="number"></ion-input>
+        <ion-button (click)="remove(product.id)" class="card-remove" color="primary">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+  <div class="card-w"></div>
+  <div class="card-total">
+    <ion-button class="card-buy"color="primary">
+      {{total}}$ <ion-icon class="card-icon-card" name="card"></ion-icon>
+      <div class="card-line-v"></div>
+      Comprar
+    </ion-button>
+  </div>
 </ion-content>

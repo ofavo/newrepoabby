@@ -12,17 +12,22 @@ export class FolderPage implements OnInit {
     {
       title: 'Perfil',
       url: '/folder/profile',
-      icon: 'mail'
+      icon: 'person'
     },
     {
       title: 'Tiendas',
       url: '/folder/locations',
-      icon: 'mail'
+      icon: 'location'
     },
     {
       title: 'Mis Pedidos',
       url: '/folder/orders/tab1',
       icon: 'cart'
+    },
+    {
+      title: 'Delivery',
+      url: '/folder/delivery/search',
+      icon: 'bicycle'
     },
   
   ];

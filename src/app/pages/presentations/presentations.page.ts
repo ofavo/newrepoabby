@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { PresentationsServicesService } from './services/presentations-services.service';
 import { environment } from '../../../environments/environment';
 import { CardComponent } from '../../components/card/card.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -21,7 +21,7 @@ export class PresentationsPage implements OnInit {
   ];
   public id : string = "";
 
-  constructor(public http: PresentationsServicesService,public modalController: ModalController,
+  constructor(public http: PresentationsServicesService,public modalController: ModalController,public ruter: Router,
      public alertController: AlertController, public toastController: ToastController,private rutaActiva: ActivatedRoute) {
        this.id = this.rutaActiva.snapshot.params.id;
        this.name = this.rutaActiva.snapshot.params.name;
@@ -48,7 +48,10 @@ export class PresentationsPage implements OnInit {
   //    this.presentAlert()
   //   })
   // }
-
+  goFilters(){
+    this.ruter.navigate(['/folder','categorys',`${this.id}`,`${this.name}`])
+  }
+  
   serchProduct(ev: any){
     let tem = ev.target.value;  
      if(tem && tem.trim() != ''){

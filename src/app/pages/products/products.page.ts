@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ProductsServicesService } from './services/products-services.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { CardComponent } from 'src/app/components/card/card.component';
+import { CardComponent } from '../../components/card/card.component';
 import { ModalController } from '@ionic/angular';
 
 
@@ -35,6 +35,11 @@ export class ProductsPage implements OnInit {
   goPresentatios(id,name){
     this.ruter.navigate(['/folder','presentations',`${id}`,`${name}`])
   }
+  goFilters(){
+    this.ruter.navigate(['/folder','categorys',`${this.id}`,`${this.name}`])
+  }
+  
+
   serchProduct(ev: any){
     let tem = ev.target.value;  
    

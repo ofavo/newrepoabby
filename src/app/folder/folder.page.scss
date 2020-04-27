@@ -132,3 +132,25 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.folder-avatar {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+}
+
+.folder-name {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.folder-div {
+  height: 1px;
+  background: #fff;
+  width: 80%;
+  margin: 1.5rem auto 0 auto;
+}
+
+.folder-item {
+  padding-left: 10px;
+}
