@@ -26,7 +26,7 @@ export class FolderPage implements OnInit {
     },
     {
       title: 'Delivery',
-      url: '/folder/delivery/search',
+      url: '/folder/delivery/process',
       icon: 'bicycle'
     },
   

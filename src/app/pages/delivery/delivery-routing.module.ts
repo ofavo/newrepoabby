@@ -8,11 +8,7 @@ const routes: Routes = [
     path: '',
     component: DeliveryPage,
     children: [
-      {
-        path: 'search',
-        loadChildren: () => import('./search/search.module').then(m => m.SearchPageModule)
-        
-      },
+   
       {
         path: 'process',
         loadChildren: () => import('./process/process.module').then(m => m.ProcessPageModule)
