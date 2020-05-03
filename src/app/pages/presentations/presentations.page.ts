@@ -122,7 +122,7 @@ export class PresentationsPage implements OnInit {
         console.log('cartProductAdd: ',this.cartProducts)
       }
     })
-    //product es el producto entero, no sé donde lo vas a guardar pero ahi está para que le hagas post o algo.
+    
    }
 
    lessProduct(id){
@@ -131,7 +131,7 @@ export class PresentationsPage implements OnInit {
         if(this.products[i].quantity > 1){
           this.products[i].quantity = this.products[i].quantity - 1 
         }else{
-        //Aqui vas a poner cuando vayas a eliminar el producto, por ahora te lo dejaré que se oculte el input
+        
           this.cartProducts.forEach((item, index) => {
             if(id == item.id){
               item.add = false;
@@ -153,7 +153,7 @@ export class PresentationsPage implements OnInit {
         }
       }
     }
-    //Cada vez que sumes o restes tienes que actualizar el producto en carrito
+    
  }
 
   async presentModal() {
