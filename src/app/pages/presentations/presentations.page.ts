@@ -119,7 +119,6 @@ export class PresentationsPage implements OnInit {
         item.add = true;
         item.quantity = item.quantity + 1
         this.cartProducts.push(item)
-        console.log('cartProductAdd: ',this.cartProducts)
       }
     })
     
@@ -137,7 +136,6 @@ export class PresentationsPage implements OnInit {
               item.add = false;
               item.quantity = item.quantity - 1
               this.cartProducts.splice(index, 1)
-              console.log('cartProductRemove: ',this.cartProducts)
             }
           })
         } 
