@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-card',
@@ -10,68 +10,68 @@ export class CardComponent implements OnInit {
   public total : number = 0;
   public subtotal : Array<number> = [];
   public products : Array<any> = [
-    {
-      id: 1,
-      img: "../../assets/harinapan.jpg",
-      name: "Harina Pan 1kg",
-      price: 2,
-      quantity: 1
-    },
-    {
-      id: 2,
-      img: "../../assets/harinadetrigo.jpg",
-      name: "Harina de trigo Juana 1kg",
-      price: 5,
-      quantity: 1
-    },
-    {
-      id: 3,
-      img: "../../assets/mayonesa.png",
-      name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
-      price: 8,
-      quantity: 1
-    },
-    {
-      id: 4,
-      img: "../../assets/salsadetomate.jpg",
-      name: "Salsa de Tomate Heinz 400ml",
-      price: 4,
-      quantity: 1
-    },
-    {
-      id: 5,
-      img: "../../assets/mayonesa.png",
-      name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
-      price: 3,
-      quantity: 1
-    },
-    {
-      id: 6,
-      img: "../../assets/salsadetomate.jpg",
-      name: "Salsa de Tomate Heinz 400ml",
-      price: 2,
-      quantity: 1
-    },
-    {
-      id: 7,
-      img: "../../assets/mayonesa.png",
-      name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
-      price: 1,
-      quantity: 1
-    },
-    {
-      id: 8,
-      img: "../../assets/salsadetomate.jpg",
-      name: "Salsa de Tomate Heinz 400ml",
-      price: 4,
-      quantity: 1
-    },
+    // {
+    //   id: 1,
+    //   img: "../../assets/harinapan.jpg",
+    //   name: "Harina Pan 1kg",
+    //   price: 2,
+    //   quantity: 1
+    // },
+    // {
+    //   id: 2,
+    //   img: "../../assets/harinadetrigo.jpg",
+    //   name: "Harina de trigo Juana 1kg",
+    //   price: 5,
+    //   quantity: 1
+    // },
+    // {
+    //   id: 3,
+    //   img: "../../assets/mayonesa.png",
+    //   name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
+    //   price: 8,
+    //   quantity: 1
+    // },
+    // {
+    //   id: 4,
+    //   img: "../../assets/salsadetomate.jpg",
+    //   name: "Salsa de Tomate Heinz 400ml",
+    //   price: 4,
+    //   quantity: 1
+    // },
+    // {
+    //   id: 5,
+    //   img: "../../assets/mayonesa.png",
+    //   name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
+    //   price: 3,
+    //   quantity: 1
+    // },
+    // {
+    //   id: 6,
+    //   img: "../../assets/salsadetomate.jpg",
+    //   name: "Salsa de Tomate Heinz 400ml",
+    //   price: 2,
+    //   quantity: 1
+    // },
+    // {
+    //   id: 7,
+    //   img: "../../assets/mayonesa.png",
+    //   name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
+    //   price: 1,
+    //   quantity: 1
+    // },
+    // {
+    //   id: 8,
+    //   img: "../../assets/salsadetomate.jpg",
+    //   name: "Salsa de Tomate Heinz 400ml",
+    //   price: 4,
+    //   quantity: 1
+    // },
   ];
 
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController, private navparams: NavParams) { }
 
   ngOnInit() {
-
+    this.products = this.navparams.get('items')
   }
 
   ionViewDidEnter(){

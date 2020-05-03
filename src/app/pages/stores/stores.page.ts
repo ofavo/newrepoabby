@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoresServicesService } from './services/stores-services.service';
 import { environment} from '../../../environments/environment';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { CardComponent } from 'src/app/components/card/card.component';
+import { CardComponent } from '../../components/card/card.component';
 import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-stores',
@@ -32,7 +32,7 @@ export class StoresPage implements OnInit {
  
   }
   goStoreProducts(id,name){
-    this.ruter.navigate(['/folder','categorys',`${id}`,`${name}`])
+    this.ruter.navigate(['/folder','products',`${id}`,`${name}`])
   }
   serchStore(ev: any){
     let tem = ev.target.value;  
