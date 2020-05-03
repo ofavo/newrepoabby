@@ -26,7 +26,7 @@ export class PresentationsPage implements OnInit {
       id: 1,
       img: "../../assets/harinapan.jpg",
       name: "Harina Pan 1kg",
-      price: 1,
+      price: 2,
       category: "Viveres",
       description: "Viveres, Viveres, Viveres, Viveres, Viveres, Viveres, Viveres",
       quantity: 0
