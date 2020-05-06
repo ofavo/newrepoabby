@@ -30,7 +30,7 @@
         <ion-button (click)="moreProduct(datos.id)" class="presentations-add" color="primary">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
-        <ion-input class="presentations-quantity" [value]="datos.quantity" type="number"></ion-input>
+        <ion-input class="presentations-quantity" [(ngModel)]="datos.quantity" type="number"></ion-input>
         <ion-button class="presentations-remove" (click) ='lessProduct(datos.id)' color="primary">
           <ion-icon name="remove-outline"></ion-icon>
         </ion-button>

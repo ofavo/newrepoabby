@@ -9,11 +9,11 @@
   <ion-list *ngFor="let product of products">
     <ion-item>
       <ion-thumbnail slot="start">
-        <img src={{product.img}} />
+        <img [src]="product.photo" />
       </ion-thumbnail>
       <ion-label class="card-label-w">
-        <h2 class="card-h2">{{product.name}}</h2>
-        <h3>{{product.price}}$</h3>
+        <h2 class="card-h2">{{product.presentationName}}</h2>
+        <h3>{{product.salePrice }}$</h3>
       </ion-label>
       <div class="card-number">
         <ion-button (click)="add(product.id)"class="card-add" color="primary">
@@ -29,7 +29,7 @@
   <div class="card-w"></div>
   <div class="card-total">
     <ion-button class="card-buy"color="primary">
-      {{total}}$ <ion-icon class="card-icon-card" name="card"></ion-icon>
+      {{totalAmount()}}$ <ion-icon class="card-icon-card" name="card"></ion-icon>
       <div class="card-line-v"></div>
       Comprar
     </ion-button>
