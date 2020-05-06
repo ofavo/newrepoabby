@@ -22,39 +22,7 @@ export class PresentationsPage implements OnInit {
   // public products : Array<any> = [
   // ];
   public products : Array<any> = [
-    {
-      id: 1,
-      img: "../../assets/harinapan.jpg",
-      name: "Harina Pan 1kg",
-      price: 1,
-      category: "Viveres",
-      description: "Viveres, Viveres, Viveres, Viveres, Viveres, Viveres, Viveres",
-      quantity: 0
-    },
-    {
-      id: 2,
-      img: "../../assets/harinadetrigo.jpg",
-      name: "Harina de trigo Juana 1kg",
-      price: 2,
-      category: "Viveres",
-      quantity: 0
-    },
-    {
-      id: 3,
-      img: "../../assets/mayonesa.png",
-      name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
-      price: 3,
-      category: "Viveres",
-      quantity: 0
-    },
-    {
-      id: 4,
-      img: "../../assets/salsadetomate.jpg",
-      name: "Salsa de Tomate Heinz 400ml",
-      price: 4,
-      category: "Viveres",
-      quantity: 0
-    },
+   
   ];
   public id : string = "";
 
@@ -66,28 +34,17 @@ export class PresentationsPage implements OnInit {
 
   ngOnInit() {
     this.http.getPresentations(this.url+this.id+"&pages=1000").subscribe((data: any)=>{
-      this.products = data;
+      this.products = data.data;
       console.log(this.products)
-    })
-    this.datos = this.products.slice();
+      this.datos = this.products.slice();
     for(const i in this.datos){
       this.datos[i].add = false
     }
+    })
+    
   }
 
-  // sentData() {
-  //   let env = {
-  //     email : this.email,
-  //     password : this.password
-  //   }
-  //   this.http.getPresentations(`${environment.url}/presentations`).subscribe((data: any)=>{
-  //     if(data){
-  //       this.router.navigateByUrl('products')
-  //     }
-  //   },err =>{
-  //    this.presentAlert()
-  //   })
-  // }
+
   goFilters(){
     this.ruter.navigate(['/folder','categorys',`${this.id}`,`${this.name}`])
   }
@@ -95,13 +52,12 @@ export class PresentationsPage implements OnInit {
   serchProduct(ev: any){
     let tem = ev.target.value;  
      if(tem && tem.trim() != ''){
-      let val = ev.target.value[0].toUpperCase()+ 
-      tem.slice(1);
+      let val = ev.target.value;
       let valTwo = ev.target.value;
        this.datos = []
        let tempral = []
       for(let i=0; i< this.products.length;i++) {
-           if(this.products[i].name.includes(`${val}`)  ){   
+           if(this.products[i].presentationName.includes(`${val}`)  ){   
              tempral.push(this.products[i]);
            }
          if(i+1 == this.products.length){
@@ -112,6 +68,7 @@ export class PresentationsPage implements OnInit {
       this.datos = this.products.slice()
      }
    }
+   // Genessis si
 
    addProductButton(select, product, id){
     this.datos.forEach((item, index) => {

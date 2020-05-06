@@ -12,7 +12,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
-  public url : string = environment.api + "products?categorystoreid=";
+  public url : string = environment.api + "search/product/store/";
   public datos : any = [];
   public name: any = "";
   public id : string = "";
@@ -24,8 +24,8 @@ export class ProductsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get(this.url+this.id+"&pages=1000").subscribe((data: any)=>{
-      this.datos = data;
+    this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
+      this.datos = data.data;
       console.log(this.datos);
       this.temDatos = this.datos.slice();
     })
@@ -36,21 +36,20 @@ export class ProductsPage implements OnInit {
   }
 
   goFilters(){
-    this.ruter.navigate(['/folder','categorys',`${this.id}`,`${this.name}`])
+    
   }
   
   serchProduct(ev: any){
     let tem = ev.target.value;  
    
      if(tem && tem.trim() != ''){
-      let val = ev.target.value[0].toUpperCase()+ 
-      tem.slice(1);
+      let val = ev.target.value;
       let valTwo = ev.target.value;
        this.datos = []
        let tempral = []
       for(let i=0; i< this.temDatos.length;i++) {
        
-           if(this.temDatos[i].name.includes(`${val}`)  ){   
+           if(this.temDatos[i].productName.includes(`${val}`)  ){   
           
              tempral.push(this.temDatos[i]);
 
