@@ -1,29 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ProductsServicesService } from './services/products-services.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
 import { ModalController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
+import { FiltersComponent } from 'src/app/components/filters/filters.component';
+import { Observable } from 'rxjs';
 
+import { Plugins } from '@capacitor/core';
 
+const { Storage } = Plugins;
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
+
+
+
   public url : string = environment.api + "search/product/store/";
   public datos : any = [];
   public name: any = "";
   public id : string = "";
+  public filters : Observable<any[]> ; 
   public temDatos : any = [];
-  constructor(private http: ProductsServicesService,public ruter: Router,public modalController: ModalController,private rutaActiva: ActivatedRoute) { 
+  constructor(private http: ProductsServicesService,public ruter: Router, public popoverT : PopoverController,
+    public modalController: ModalController,private rutaActiva: ActivatedRoute) { 
     console.log(this.rutaActiva.snapshot.params.id)
     this.name = this.rutaActiva.snapshot.params.name;
     this.id = this.rutaActiva.snapshot.params.id;
   }
 
   ngOnInit() {
+   
     this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
       this.datos = data.data;
       console.log(this.datos);
@@ -35,9 +46,7 @@ export class ProductsPage implements OnInit {
     this.ruter.navigate(['/folder','presentations',`${id}`,`${name}`])
   }
 
-  goFilters(){
-    
-  }
+
   
   serchProduct(ev: any){
     let tem = ev.target.value;  
@@ -79,5 +88,18 @@ export class ProductsPage implements OnInit {
       component: CardComponent
     });
     return await modal.present();
+  }
+  async presentPopover(ev: any) {
+    const popover = await this.popoverT.create({
+      component: FiltersComponent,
+      event: ev,
+     
+      translucent: true
+    });
+    return await popover.present();
+  }
+ getItem(value) {
+   
+    console.log('Got item: ', value);
   }
 }
