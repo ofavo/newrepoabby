@@ -6,7 +6,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
 import { ModalController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
-import { FiltersComponent } from 'src/app/components/filters/filters.component';
 
 
 

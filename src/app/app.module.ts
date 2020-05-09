@@ -10,11 +10,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FiltersComponent } from './components/filters/filters.component'
+
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, FiltersComponent],
-  entryComponents: [CardComponent,FiltersComponent],
+  declarations: [AppComponent, CardComponent],
+  entryComponents: [CardComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
