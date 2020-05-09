@@ -1,31 +1,11 @@
-<ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-menu-button autoHide="false"></ion-menu-button>
-          </ion-buttons>
-    <ion-title>{{name}}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-list >
+ 
+  <ion-item>
+    <ion-label>Mega Man X</ion-label>
+    <ion-checkbox (click)="addcategory($event,6)"></ion-checkbox>
+  </ion-item>
 
-<ion-content>
-    <div class="category-search">
-      <ion-searchbar class="category-search-c" placeholder="¿Qué categoría buscas?" type="text" debounce="500" (ionInput)=" serchCateory($event)"></ion-searchbar>
-    </div>
-    <ion-list>
-        <ion-card class="category-card" *ngFor="let datos of datos"  (click)="goCategoryProducts(datos.id,datos.name)">
-          <ion-img src={{ConverUrl(datos.photo)}}></ion-img>
-          <div class="category-label">
-            <ion-label class="category-name">
-              {{datos.name}}
-            </ion-label>
-          </div>
-        </ion-card>
-    </ion-list>  
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button (click)="presentModal()">
-                <ion-icon name="cart-outline"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
-  
-  </ion-content>
-  
+</ion-list>
+<div class="ion-text-center">
+  <ion-button class="profile-btn" (click)="goCategoryProducts()" color="primary">Filtrar</ion-button>
+</div>

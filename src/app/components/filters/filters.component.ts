@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsPage } from '../../pages/products/products.page';
-import { PopoverController } from '@ionic/angular';
-import { Plugins } from '@capacitor/core';
-import { VirtualTimeScheduler } from 'rxjs';
 
-const { Storage } = Plugins;
+import { ModalController } from '@ionic/angular';
+import { FiltersServicesService } from '../../servicesGenerals/filters-services.service';
 
 @Component({
   selector: 'app-filters',
@@ -14,7 +11,7 @@ const { Storage } = Plugins;
 export class FiltersComponent implements OnInit {
   public idenv: any = [];
  
-  constructor( public popover : PopoverController, private ProductsPage : ProductsPage) { }
+  constructor( public popover : ModalController, public filters : FiltersServicesService ) { }
 
   ngOnInit() {}
 
@@ -32,11 +29,11 @@ export class FiltersComponent implements OnInit {
     
   }
   close() {
-     console.log(this.ProductsPage.id)
-    this.ProductsPage.getItem(this.idenv)
-    this.popover.dismiss().then((data ) => { 
-    
-      return  });;
+     
+ 
+    this.popover.dismiss({ 
+      'dismissed': true
+       });
   }
 
 }

@@ -1,16 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ProductsServicesService } from './services/products-services.service';
+import { FiltersServicesService } from '../../servicesGenerals/filters-services.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
 import { ModalController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { FiltersComponent } from 'src/app/components/filters/filters.component';
-import { Observable } from 'rxjs';
 
-import { Plugins } from '@capacitor/core';
 
-const { Storage } = Plugins;
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
@@ -18,28 +17,33 @@ const { Storage } = Plugins;
 })
 export class ProductsPage implements OnInit {
 
-
-
   public url : string = environment.api + "search/product/store/";
   public datos : any = [];
   public name: any = "";
   public id : string = "";
-  public filters : Observable<any[]> ; 
+  public filtro : any = []; 
   public temDatos : any = [];
   constructor(private http: ProductsServicesService,public ruter: Router, public popoverT : PopoverController,
-    public modalController: ModalController,private rutaActiva: ActivatedRoute) { 
-    console.log(this.rutaActiva.snapshot.params.id)
+    public modalController: ModalController,private rutaActiva: ActivatedRoute,public filters : FiltersServicesService) { 
+    
     this.name = this.rutaActiva.snapshot.params.name;
     this.id = this.rutaActiva.snapshot.params.id;
   }
 
   ngOnInit() {
-   
-    this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
+   this.filters.getItem().then((data: any) => {
+     if(data.value){
+       this.filtro = data;
+      this.filters.removeItem()
+     }else{
+        this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
       this.datos = data.data;
       console.log(this.datos);
       this.temDatos = this.datos.slice();
-    })
+    });
+     }
+   })
+   
   }
 
   goPresentatios(id,name){
@@ -89,17 +93,9 @@ export class ProductsPage implements OnInit {
     });
     return await modal.present();
   }
-  async presentPopover(ev: any) {
-    const popover = await this.popoverT.create({
-      component: FiltersComponent,
-      event: ev,
-     
-      translucent: true
-    });
-    return await popover.present();
+ 
+  filter(){
+    this.ruter.navigateByUrl(`folder/categorys/${this.id}/${this.name}`)
   }
- getItem(value) {
-   
-    console.log('Got item: ', value);
-  }
+
 }
