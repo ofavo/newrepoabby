@@ -11,7 +11,8 @@ public datos : any  = [];
   constructor(public filters : FiltersServicesService) { }
 
   ngOnInit() {
-    this.datos = this.filters.getItemTraking();
+    let valor: any = this.filters.getItemTraking();
+    this.datos = valor
     console.log(this.datos)
   }
 

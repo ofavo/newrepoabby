@@ -31,13 +31,26 @@ export class FiltersServicesService {
     await Storage.set({
       key: 'traking',
       value: JSON.stringify({
-        value
+        id:	value.id,
+        code:	value.code,
+        start_date_time:	value.start_date_time,
+        finish_date_time: value.finish_date_time,
+        user_buyer_id: value.user_buyer_id,
+        user_receive_id: value.user_buyer_id,
+        user_delivery_id: value.user_delivery_id,
+        amount: value.amount,
+        photo:	value.photo,
+        observations: value.observations,
+        qr: value.qr,
+        account: value.account,
+        userid: value.userid
       })
     });
   }
   getItemTraking() {
-    
-    let value  =  Storage.get({ key: 'traking' });
+    const ret : any =  Storage.get({  key: 'traking'});
+    const value = JSON.parse(ret.value);
+  
     return value;
   }
   async removeItemTraking() {

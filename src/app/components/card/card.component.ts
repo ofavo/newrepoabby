@@ -109,10 +109,10 @@ export class CardComponent implements OnInit {
           alert('hola3')
          this.cardservices.postOrdes(this.url,this.envio).subscribe((data : any) => {
            console.log(data.result[0  ])
-            this.filters.setItemTraking(data.result[0])/** 
+            this.filters.setItemTraking(data.result[0])
             this.modalController.dismiss().then(data =>{
               this.ruter.navigateByUrl('folder/destinations-user')
-            })*/
+            })
             
          })
         }
