@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
+import { CardServiceService } from '../../servicesGenerals/card-service.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,8 +15,8 @@ export class CardComponent implements OnInit {
   public products : any = [];
   public envio : any = {
     code:"",
-    user_buyer_id:"",
-    uder_receive_id:"",
+    user_buyer_id:1,
+    uder_receive_id: null,
     amount: 0,
     observations: "",
     qr: "",
@@ -33,7 +34,7 @@ export class CardComponent implements OnInit {
     amount: 0,
     userid: ""
   }
-  constructor(public modalController: ModalController, private navparams: NavParams) { }
+  constructor(public modalController: ModalController, private navparams: NavParams, public cardservices : CardServiceService) { }
   
   ngOnInit() {
     this.products = this.navparams.get('items')
@@ -88,18 +89,24 @@ export class CardComponent implements OnInit {
   }
 
   sentPedido(){
+    alert('hola1')
     if (this.products.length > 0){
-      for (let i in this.products){
+      alert('hola2')
+
+      for (let i =0; i < this.products.length;i++){
         const valor = {
-          inventory_id: this.products.inventories[0].inventoriesId ,
-          quantity:0,
-          price: 0,
-          amount: 0,
-          userid: ""
+          inventory_id: this.products[i].inventories[0].inventoriesId ,
+          quantity: this.products[i].quantity,
+          price: this.products[i].salePrice,
+          amount: parseInt(this.products[i].quantity)* parseInt(this.products[i].salePrice),
+          userid: this.products[i].userId
         }
         this.envio.detail.push(valor)
         if((i + 1) === this.products.length ){
-         
+          alert('hola3')
+         this.cardservices.postOrdes(this.url,this.envio).subscribe((data : any) => {
+           alert('Orden Creada')
+         })
         }
       }
     }
