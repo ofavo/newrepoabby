@@ -26,6 +26,22 @@ export class FiltersServicesService {
   async removeItem() {
     await Storage.remove({ key: 'name' });
   }
-  
+  async setItemTraking(value){
+   
+    await Storage.set({
+      key: 'traking',
+      value: JSON.stringify({
+        value
+      })
+    });
+  }
+  getItemTraking() {
+    
+    let value  =  Storage.get({ key: 'traking' });
+    return value;
+  }
+  async removeItemTraking() {
+    await Storage.remove({ key: 'traking' });
+  }
 
 }

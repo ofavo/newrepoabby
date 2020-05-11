@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
 import { CardServiceService } from '../../servicesGenerals/card-service.service';
+import { FiltersServicesService} from '../../servicesGenerals/filters-services.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -34,7 +36,8 @@ export class CardComponent implements OnInit {
     amount: 0,
     userid: ""
   }
-  constructor(public modalController: ModalController, private navparams: NavParams, public cardservices : CardServiceService) { }
+  constructor(public modalController: ModalController, private navparams: NavParams, public ruter: Router,
+    public cardservices : CardServiceService, public filters : FiltersServicesService) { }
   
   ngOnInit() {
     this.products = this.navparams.get('items')
@@ -105,7 +108,12 @@ export class CardComponent implements OnInit {
         if((i + 1) === this.products.length ){
           alert('hola3')
          this.cardservices.postOrdes(this.url,this.envio).subscribe((data : any) => {
-           alert('Orden Creada')
+           console.log(data.result[0  ])
+            this.filters.setItemTraking(data.result[0])/** 
+            this.modalController.dismiss().then(data =>{
+              this.ruter.navigateByUrl('folder/destinations-user')
+            })*/
+            
          })
         }
       }
