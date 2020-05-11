@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
@@ -7,14 +8,33 @@ import { NavParams, ModalController } from '@ionic/angular';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  public url : string = environment.api + "order";
   public total : number = 0;
   public subtotal : number = 0;
-  public products : Array<any> = [
-  
-  ];
+  public products : any = [];
+  public envio : any = {
+    code:"",
+    user_buyer_id:"",
+    uder_receive_id:"",
+    amount: 0,
+    observations: "",
+    qr: "",
+    account: 1,
+    userid: "p05",
+    detail:[
+      
+    ]
 
+  }
+  public detalles: {
+    inventory_id:0,
+    quantity:0,
+    price: 0,
+    amount: 0,
+    userid: ""
+  }
   constructor(public modalController: ModalController, private navparams: NavParams) { }
-
+  
   ngOnInit() {
     this.products = this.navparams.get('items')
     console.log(this.products)
@@ -34,12 +54,15 @@ export class CardComponent implements OnInit {
   }
 
   totalAmount(){
-    for(const i in this.products){
-      this.subtotal = this.products[i].quantity * parseInt(this.products[i].salePrice);
-      this.total = this.subtotal;
+    if(this.products.length > 0){
+      for(const i in this.products){
+        this.subtotal = this.products[i].quantity * parseInt(this.products[i].salePrice);
+        this.total = this.subtotal;
      
       
-    } return this.total
+      } return this.total
+    }
+    
   }
 
 
@@ -65,7 +88,21 @@ export class CardComponent implements OnInit {
   }
 
   sentPedido(){
-    
+    if (this.products.length > 0){
+      for (let i in this.products){
+        const valor = {
+          inventory_id: this.products.inventories[0].inventoriesId ,
+          quantity:0,
+          price: 0,
+          amount: 0,
+          userid: ""
+        }
+        this.envio.detail.push(valor)
+        if((i + 1) === this.products.length ){
+         
+        }
+      }
+    }
   }
 
 }
