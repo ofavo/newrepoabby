@@ -30,7 +30,7 @@ export class FiltersServicesService {
    
     await Storage.set({
       key: 'traking',
-      value: {
+      value  : JSON.stringify( {
         id:	value.id,
         code:	value.code,
         start_date_time:	value.start_date_time,
@@ -44,7 +44,7 @@ export class FiltersServicesService {
         qr: value.qr,
         account: value.account,
         userid: value.userid
-      }
+      })
     });
   }
   getItemTraking() {

@@ -23,7 +23,11 @@ const routes: Routes = [
   {
     path: 'category',
     loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+  },  {
+    path: 'directions-envio',
+    loadChildren: () => import('./pages/directions-envio/directions-envio.module').then( m => m.DirectionsEnvioPageModule)
   }
+
 
  
  
