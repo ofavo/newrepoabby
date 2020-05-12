@@ -8,8 +8,8 @@ export const environment = {
   apia: "https://apiadev.abbymercados.com/api/",
   //api : "http://192.168.0.100:8999/api/"
   
-    api : "http://192.168.3.2:8999/api/"
-  //api :  "https://apibdev.abbymercados.com/api/" 
+    //api : "http://192.168.3.2:8999/api/"
+  api :  "https://apibdev.abbymercados.com/api/" 
  //api : "https://apib.abbymercados.com/api/"
 };
 
