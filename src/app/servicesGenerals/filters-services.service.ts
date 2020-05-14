@@ -56,5 +56,20 @@ export class FiltersServicesService {
   async removeItemTraking() {
     await Storage.remove({ key: 'traking' });
   }
+    
+  getToken() {
+    
+    let value  =  Storage.get({ key: 'token' });
+    return value;
+  }
+  async setToken(value){
+    await Storage.set({
+      key: 'token',
+      value: value
+    });
+  }
+  async removeToken() {
+    await Storage.remove({ key: 'token' });
+  }
 
 }

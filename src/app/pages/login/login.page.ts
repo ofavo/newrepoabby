@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
+import { FiltersServicesService } from '../../servicesGenerals/filters-services.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
   public recoveryPassword : string = "";
   public password : string ="";
   public buttonActive : boolean = false;
-  constructor(public http: LoginServicesService,  public router: Router,public alertController: AlertController, public toastController: ToastController) { }
+  constructor(public http: LoginServicesService,  public router: Router,public filtres : FiltersServicesService,
+    public alertController: AlertController, public toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -38,7 +40,7 @@ export class LoginPage implements OnInit {
     const headers = {"Content-Type":"application/json"}
     const body = {email:this.recoveryPassword}
     this.http.postEmail(`${environment.apia}users/recovery_password`,JSON.stringify(body), headers).subscribe((data: any)=>{
-      console.log(body)
+      console.log(data);
       if(data){
         this.toastValidEmail()
       }

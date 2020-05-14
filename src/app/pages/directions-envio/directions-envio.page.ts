@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { DirectionsComponent } from 'src/app/components/directions/directions.component';
 
 @Component({
   selector: 'app-directions-envio',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DirectionsEnvioPage implements OnInit {
 
-  constructor() { }
+  constructor(public modalController: ModalController,) { }
 
   ngOnInit() {
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: DirectionsComponent
+    });
+    return await modal.present();
   }
 
 }
