@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: DirectionsEnvioPage
-  },
-  {
-    path: 'services-envio',
-    loadChildren: () => import('../directionsEnvio/services/services-envio/services-envio.module').then( m => m.ServicesEnvioPageModule)
   }
 ];
 
