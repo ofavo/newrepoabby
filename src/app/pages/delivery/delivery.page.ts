@@ -13,24 +13,27 @@ export class DeliveryPage implements OnInit {
   constructor(public route : Router) { }
 
   ngOnInit() {
-    this.getCurrentPosition()
+    this.watchPosition()
   }
   async getCurrentPosition() {
+    
     const coordinates = await Geolocation.getCurrentPosition();
     console.log('Current', coordinates);
-    this.comprobations(coordinates)
+ 
   }
   comprobations(coordinates){
     if(coordinates){
       alert(`${coordinates}`)
+      console.log(coordinates)
     }else{
-     
+      console.log(coordinates)
        this.route.navigateByUrl('folder/locations')
     }
   }
 
-  watchPosition() {
+  watchPosition() {alert('hola')
     const wait = Geolocation.watchPosition({}, (position, err) => {
+      this.comprobations(position)
     })
   }
 

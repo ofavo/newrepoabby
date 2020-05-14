@@ -20,6 +20,7 @@ export class PresentationsPage implements OnInit {
   public cartProducts: Array<any> = [];
   // public quantity: number = 1;
   public products : Array<any> = [
+   
   ];
   // public products : Array<any> = [
   //   {
@@ -66,29 +67,16 @@ export class PresentationsPage implements OnInit {
 
   ngOnInit() {
     this.http.getPresentations(this.url+this.id+"&pages=1000").subscribe((data: any)=>{
-      this.products = data;
+      this.products = data.data;
       console.log(this.products)
-    })
-    this.datos = this.products.slice();
+      this.datos = this.products.slice();
     for(const i in this.datos){
       this.datos[i].add = false
     }
+    })
+    
   }
 
-  // sentData() {
-  //   let env = {
-  //     email : this.email,
-  //     password : this.password
-  //   }
-  //   this.http.getPresentations(`${environment.url}/presentations`).subscribe((data: any)=>{
-  //     if(data){
-  //       this.router.navigateByUrl('products')
-  //     }
-  //   },err =>{
-  //    this.presentAlert()
-  //   })
-  // }
-  
   goFilters(){
     this.ruter.navigate(['/folder','categorys',`${this.id}`,`${this.name}`])
   }
@@ -96,13 +84,12 @@ export class PresentationsPage implements OnInit {
   serchProduct(ev: any){
     let tem = ev.target.value;  
      if(tem && tem.trim() != ''){
-      let val = ev.target.value[0].toUpperCase()+ 
-      tem.slice(1);
+      let val = ev.target.value;
       let valTwo = ev.target.value;
        this.datos = []
        let tempral = []
       for(let i=0; i< this.products.length;i++) {
-           if(this.products[i].name.includes(`${val}`)  ){   
+           if(this.products[i].presentationName.includes(`${val}`)  ){   
              tempral.push(this.products[i]);
            }
          if(i+1 == this.products.length){
@@ -113,12 +100,13 @@ export class PresentationsPage implements OnInit {
       this.datos = this.products.slice()
      }
    }
+   // Genessis si
 
    addProductButton(select, product, id){
     this.datos.forEach((item, index) => {
       if(select == item.id){
         item.add = true;
-        item.quantity = item.quantity + 1
+        item.quantity = 1
         this.cartProducts.push(item)
       }
     })
@@ -196,4 +184,32 @@ export class PresentationsPage implements OnInit {
     await alert.present();
   }
 
+  senpedido(){
+    let env = {
+      "code": "test01",
+      "user_buyer_id": 5,
+      "user_receive_id": 6,
+      "amount": 0,
+      "observations": "Test de Guardado Lunes",
+      "qr": "ad352aaff552",
+      "account": 1,
+      "userid": 5,
+      "detail": [
+       
+        ]
+  }
+    for(let j in this.products){
+     
+      const valor = {
+        "inventory_id":this.products[j].detail[0].id,
+        "quantity": 10,
+        "price": 3500,
+        "amount": 84000,
+        "userid": "p05"
+
+      }
+      env.detail.push(valor)
+    }
+  }
+  
 }

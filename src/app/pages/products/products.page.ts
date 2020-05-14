@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ProductsServicesService } from './services/products-services.service';
+import { FiltersServicesService } from '../../servicesGenerals/filters-services.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
 import { ModalController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
+
 
 
 @Component({
@@ -12,45 +15,53 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
-  public url : string = environment.api + "products?categorystoreid=";
+
+  public url : string = environment.api + "search/product/store/";
   public datos : any = [];
   public name: any = "";
   public id : string = "";
+  public filtro : any = []; 
   public temDatos : any = [];
-  constructor(private http: ProductsServicesService,public ruter: Router,public modalController: ModalController,private rutaActiva: ActivatedRoute) { 
-    console.log(this.rutaActiva.snapshot.params.id)
+  constructor(private http: ProductsServicesService,public ruter: Router, public popoverT : PopoverController,
+    public modalController: ModalController,private rutaActiva: ActivatedRoute,public filters : FiltersServicesService) { 
+    
     this.name = this.rutaActiva.snapshot.params.name;
     this.id = this.rutaActiva.snapshot.params.id;
   }
 
   ngOnInit() {
-    this.http.get(this.url+this.id+"&pages=1000").subscribe((data: any)=>{
-      this.datos = data;
+   this.filters.getItem().then((data: any) => {
+     if(data.value){
+       this.filtro = data;
+      this.filters.removeItem()
+     }else{
+        this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
+      this.datos = data.data;
       console.log(this.datos);
       this.temDatos = this.datos.slice();
-    })
+    });
+     }
+   })
+   
   }
 
   goPresentatios(id,name){
     this.ruter.navigate(['/folder','presentations',`${id}`,`${name}`])
   }
 
-  goFilters(){
-    this.ruter.navigate(['/folder','categorys',`${this.id}`,`${this.name}`])
-  }
+
   
   serchProduct(ev: any){
     let tem = ev.target.value;  
    
      if(tem && tem.trim() != ''){
-      let val = ev.target.value[0].toUpperCase()+ 
-      tem.slice(1);
+      let val = ev.target.value;
       let valTwo = ev.target.value;
        this.datos = []
        let tempral = []
       for(let i=0; i< this.temDatos.length;i++) {
        
-           if(this.temDatos[i].name.includes(`${val}`)  ){   
+           if(this.temDatos[i].productName.includes(`${val}`)  ){   
           
              tempral.push(this.temDatos[i]);
 
@@ -81,4 +92,9 @@ export class ProductsPage implements OnInit {
     });
     return await modal.present();
   }
+ 
+  filter(){
+    this.ruter.navigateByUrl(`folder/categorys/${this.id}/${this.name}`)
+  }
+
 }

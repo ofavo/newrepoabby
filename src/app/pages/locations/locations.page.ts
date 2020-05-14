@@ -11,7 +11,7 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./locations.page.scss'],
 })
 export class LocationsPage implements OnInit {
-  public url : string = environment.api + "locations/store/1";
+  public url : string = environment.api + "locations/store/1?pages=25";
   //public temDatos : any = [{name: 'tachira', City: [ {name: 'Lobatera', id: '1' },{name : 'San Cristobal', id: '2'},
   //{name : 'Cardenas', id: '4'}]},
   //{name:"Merida", City: [{name: 'Merida'}]}, {name:"Miranda", City: [{name: 'Ocumare'}]}
@@ -27,12 +27,12 @@ export class LocationsPage implements OnInit {
   
   
     this.http.get(this.url).subscribe((data: any)=>{
-    
+    console.log(data)
       if(data){
-         Object.keys(data).forEach((e)=>{
-        if(Object.keys(data[e].City).length > 0){
-          this.temDatos.push(data[e])
-        
+         Object.keys(data.data).forEach((e)=>{
+        if(Object.keys(data.data[e].City).length > 0){
+          this.temDatos.push(data.data[e])
+          console.log(this.temDatos)
         } 
       })
       }
@@ -42,7 +42,7 @@ export class LocationsPage implements OnInit {
   }
   
   goCity(id,name){
-    this.ruter.navigate(['/folder','stores',`${id}`,`${name}`])
+    this.ruter.navigate(['/folder','products',`${id}`,`${name}`])
   }
    serchLocations(ev: any){
     let tem = ev.target.value;  
@@ -57,7 +57,7 @@ export class LocationsPage implements OnInit {
        
         for(let j=0;j< this.temDatos[i].City.length;j++){
       
-           if(this.temDatos[i].City[j].name.includes(`${val}`)  ){   
+           if(this.temDatos[i].City[j].cityName.includes(`${val}`)  ){   
               this.buscar = true;
            tempral.push(this.temDatos[i]);
             break

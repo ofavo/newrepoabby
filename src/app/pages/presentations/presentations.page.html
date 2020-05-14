@@ -17,11 +17,11 @@
     </ion-list-header>
     <ion-item *ngFor="let datos of datos">
       <ion-thumbnail button (click)="addProduct(datos.id, datos.name, datos.price, datos.category, datos.img)" slot="start">
-        <img src={{datos.img}} />
+        <img [src]="datos.photo" />
       </ion-thumbnail>
       <ion-label class="presentations-label">
-        <h2>{{datos.name}}</h2>
-        <h3>{{datos.price}}$</h3>
+        <h2>{{datos.presentationName}}</h2>
+        <h3>{{datos.offerPrice}}$</h3>
       </ion-label>
       <ion-button *ngIf="!datos.add" (click)="addProductButton(datos.id)" class="add-btn"color="primary">
         <ion-icon class="add-icon" name="add-outline"></ion-icon>
@@ -30,7 +30,7 @@
         <ion-button (click)="moreProduct(datos.id)" class="presentations-add" color="primary">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
-        <ion-input class="presentations-quantity" [value]="datos.quantity" type="number"></ion-input>
+        <ion-input class="presentations-quantity" [(ngModel)]="datos.quantity" type="number"></ion-input>
         <ion-button class="presentations-remove" (click) ='lessProduct(datos.id)' color="primary">
           <ion-icon name="remove-outline"></ion-icon>
         </ion-button>
@@ -38,7 +38,7 @@
     </ion-item>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button (click)="goFilters()">
+    <ion-fab-button (click)="presentPopover()">
       <ion-icon name="filter-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

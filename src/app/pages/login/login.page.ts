@@ -27,7 +27,9 @@ export class LoginPage implements OnInit {
     }
     this.http.postLogin(`${environment.apia}users/login`,env).subscribe((data: any)=>{
       if(data){
+        console.log(data.token)
         this.router.navigateByUrl('folder/locations')
+        localStorage.setItem('env', data.token);
       }
     },err =>{
      this.presentAlert()
@@ -38,7 +40,6 @@ export class LoginPage implements OnInit {
     const headers = {"Content-Type":"application/json"}
     const body = {email:this.recoveryPassword}
     this.http.postEmail(`${environment.apia}users/recovery_password`,JSON.stringify(body), headers).subscribe((data: any)=>{
-      console.log(body)
       if(data){
         this.toastValidEmail()
       }

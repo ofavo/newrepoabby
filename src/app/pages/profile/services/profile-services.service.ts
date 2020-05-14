@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
-// let token = localStorage.getItem('')
-// const headers = {
-//   'Content-Type' : 'application/json',
-//   'Authorization' : token.toString()
-// }
+let token = localStorage.getItem('token')
+const headers = {
+  'Content-Type' : 'application/json',
+  'Authorization' : token
+}
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class ProfileServicesService {
     return this.http.put(url,env);
   }
 
-  // getUser(url){
-  //   return this.http.get(url, {headers:headers})
-  // }
+  getUser(url){
+    return this.http.get(url, {headers:headers})
+  }
 }

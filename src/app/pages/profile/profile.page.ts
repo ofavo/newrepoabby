@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class ProfilePage implements OnInit {
   public email : string = "";
   public password : string ="";
   public dni : string = "";
-  public url : string = "";
+  public url : string = environment.api + "users?self";
   public passwordConfirm : string ="";
   public buttonActive : boolean = false;
   public buttonDrop : boolean = false;
@@ -28,6 +29,10 @@ export class ProfilePage implements OnInit {
   constructor(private sanitizer: DomSanitizer,public http: ProfileServicesService,  public router: Router,public alertController: AlertController) { }
 
   ngOnInit() {
+    console.log(localStorage.getItem('token'))
+    this.http.getUser(this.url).subscribe((data: any)=>{
+      console.log(data)
+    })
   }
 
   sentData() {
