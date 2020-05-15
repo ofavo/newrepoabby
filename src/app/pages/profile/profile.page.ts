@@ -30,11 +30,11 @@ export class ProfilePage implements OnInit {
     public filters : FiltersServicesService) { }
 
   ngOnInit() {
-    this.filters.getToken().then((token)=>{
-      console.log('token: ',token)
+    this.filters.getToken().then((data: any)=>{
+      console.log('token: ', data.value)
       const headers = {
         'Content-Type' : 'application/json',
-        'Authorization' : token.value
+        'Authorization' : data.value
       }
       this.http.getUser(this.url, headers).subscribe((data: any)=>{
         console.log(data)

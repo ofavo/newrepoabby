@@ -15,6 +15,7 @@ export class CategoryPage implements OnInit {
   public url = environment.api + "categoriesForProduct/?storeid=";
   public datos: any = [] 
   public name: any = "";
+  public categories: any = []
   public temDatos: any = [];
   public id : string = "";
   public idenv: any = [];
