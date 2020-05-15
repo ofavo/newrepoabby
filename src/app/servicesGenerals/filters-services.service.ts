@@ -13,21 +13,22 @@ export class FiltersServicesService {
   
   
   getItem() {
-    
     let value  =  Storage.get({ key: 'name' });
     return value;
   }
+
   async setItem(value){
     await Storage.set({
       key: 'name',
       value: value
     });
   }
+
   async removeItem() {
     await Storage.remove({ key: 'name' });
   }
+
   async setItemTraking(value){
-   
     await Storage.set({
       key: 'traking',
       value  : JSON.stringify( {
@@ -47,27 +48,29 @@ export class FiltersServicesService {
       })
     });
   }
+
   getItemTraking() {
     const ret : any =  Storage.get({  key: 'traking'});
     const value =   JSON.parse(ret.__zone_symbol__value.value);
-  
     return value;
   }
+  
   async removeItemTraking() {
     await Storage.remove({ key: 'traking' });
   }
     
   getToken() {
-    
     let value  =  Storage.get({ key: 'token' });
     return value;
   }
+
   async setToken(value){
     await Storage.set({
       key: 'token',
       value: value
     });
   }
+
   async removeToken() {
     await Storage.remove({ key: 'token' });
   }

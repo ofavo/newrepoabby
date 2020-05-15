@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   public recoveryPassword : string = "";
   public password : string ="";
   public buttonActive : boolean = false;
-  constructor(public http: LoginServicesService,  public router: Router,public filtres : FiltersServicesService,
+  constructor(public http: LoginServicesService,  public router: Router,public filters : FiltersServicesService,
     public alertController: AlertController, public toastController: ToastController) { }
 
   ngOnInit() {
@@ -29,9 +29,9 @@ export class LoginPage implements OnInit {
     }
     this.http.postLogin(`${environment.apia}users/login`,env).subscribe((data: any)=>{
       if(data){
-        console.log(data.token)
         this.router.navigateByUrl('folder/locations')
-        localStorage.setItem('env', data.token);
+        this.filters.setToken(data.token);
+        console.log(data.token)
       }
     },err =>{
      this.presentAlert()
@@ -42,10 +42,6 @@ export class LoginPage implements OnInit {
     const headers = {"Content-Type":"application/json"}
     const body = {email:this.recoveryPassword}
     this.http.postEmail(`${environment.apia}users/recovery_password`,JSON.stringify(body), headers).subscribe((data: any)=>{
-<<<<<<< HEAD
-=======
-      console.log(data);
->>>>>>> a5761ecffa31b87548a6901e512c5500d4a54b92
       if(data){
         this.toastValidEmail()
       }

@@ -5,7 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
-
+import { FiltersServicesService} from '../../servicesGenerals/filters-services.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +17,7 @@ export class ProfilePage implements OnInit {
   public email : string = "";
   public password : string ="";
   public dni : string = "";
-  public url : string = environment.api + "users?self";
+  public url : string = environment.apia + "users?self";
   public passwordConfirm : string ="";
   public buttonActive : boolean = false;
   public buttonDrop : boolean = false;
@@ -26,12 +26,19 @@ export class ProfilePage implements OnInit {
   public photo: SafeResourceUrl;
   public photoProfile: SafeResourceUrl;
 
-  constructor(private sanitizer: DomSanitizer,public http: ProfileServicesService,  public router: Router,public alertController: AlertController) { }
+  constructor(private sanitizer: DomSanitizer,public http: ProfileServicesService,  public router: Router,public alertController: AlertController,
+    public filters : FiltersServicesService) { }
 
   ngOnInit() {
-    console.log(localStorage.getItem('token'))
-    this.http.getUser(this.url).subscribe((data: any)=>{
-      console.log(data)
+    this.filters.getToken().then((token)=>{
+      console.log('token: ',token)
+      const headers = {
+        'Content-Type' : 'application/json',
+        'Authorization' : token.value
+      }
+      this.http.getUser(this.url, headers).subscribe((data: any)=>{
+        console.log(data)
+      })
     })
   }
 
