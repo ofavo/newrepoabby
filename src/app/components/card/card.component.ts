@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
+import { CardServiceService } from '../../servicesGenerals/card-service.service';
+import { FiltersServicesService} from '../../servicesGenerals/filters-services.service';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -7,14 +11,34 @@ import { NavParams, ModalController } from '@ionic/angular';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  public url : string = environment.api + "order";
   public total : number = 0;
   public subtotal : number = 0;
-  public products : Array<any> = [
+  public products : any = [];
+  public envio : any = {
+    code:"",
+    user_buyer_id:1,
+    uder_receive_id: null,
+    amount: 0,
+    observations: "",
+    qr: "",
+    account: 1,
+    userid: "p05",
+    detail:[
+      
+    ]
+
+  }
+  public detalles: {
+    inventory_id:0,
+    quantity:0,
+    price: 0,
+    amount: 0,
+    userid: ""
+  }
+  constructor(public modalController: ModalController, private navparams: NavParams, public ruter: Router,
+    public cardservices : CardServiceService, public filters : FiltersServicesService) { }
   
-  ];
-
-  constructor(public modalController: ModalController, private navparams: NavParams) { }
-
   ngOnInit() {
     this.products = this.navparams.get('items')
     console.log(this.products)
@@ -34,12 +58,15 @@ export class CardComponent implements OnInit {
   }
 
   totalAmount(){
-    for(const i in this.products){
-      this.subtotal = this.products[i].quantity * parseInt(this.products[i].salePrice);
-      this.total = this.subtotal;
+    if(this.products.length > 0){
+      for(const i in this.products){
+        this.subtotal = this.products[i].quantity * parseInt(this.products[i].salePrice);
+        this.total = this.subtotal;
      
       
-    } return this.total
+      } return this.total
+    }
+    
   }
 
 
@@ -65,7 +92,32 @@ export class CardComponent implements OnInit {
   }
 
   sentPedido(){
-    
+    alert('hola1')
+    if (this.products.length > 0){
+      alert('hola2')
+
+      for (let i =0; i < this.products.length;i++){
+        const valor = {
+          inventory_id: this.products[i].inventories[0].inventoriesId ,
+          quantity: this.products[i].quantity,
+          price: this.products[i].salePrice,
+          amount: parseInt(this.products[i].quantity)* parseInt(this.products[i].salePrice),
+          userid: this.products[i].userId
+        }
+        this.envio.detail.push(valor)
+        if((i + 1) === this.products.length ){
+          alert('hola3')
+         this.cardservices.postOrdes(this.url,this.envio).subscribe((data : any) => {
+           console.log(data.result[0  ])
+            this.filters.setItemTraking(data.result[0])
+            this.modalController.dismiss().then(data =>{
+              this.ruter.navigateByUrl('folder/destinations-user')
+            })
+            
+         })
+        }
+      }
+    }
   }
 
 }

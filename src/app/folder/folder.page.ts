@@ -15,9 +15,14 @@ export class FolderPage implements OnInit {
       icon: 'person'
     },
     {
+      title: 'Direcioines de envio',
+      url: '/folder/directions-envio',
+      icon: 'location'
+    },
+    {
       title: 'Tiendas',
       url: '/folder/locations',
-      icon: 'location'
+      icon: 'home'
     },
     {
       title: 'Mis Pedidos',
