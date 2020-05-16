@@ -28,7 +28,9 @@ export class LoginPage implements OnInit {
       password : this.password
     }
     this.http.postLogin(`${environment.apia}users/login`,env).subscribe((data: any)=>{
+     
       if(data){
+        this.filtres.setToken(data.token)
         this.router.navigateByUrl('folder/locations')
       }
     },err =>{

@@ -12,7 +12,7 @@ export class FiltersServicesService {
   constructor() { }
   
   
-  getItem() {
+  async getItem() {
     
     let value  =  Storage.get({ key: 'name' });
     return value;
@@ -47,7 +47,7 @@ export class FiltersServicesService {
       })
     });
   }
-  getItemTraking() {
+  async getItemTraking() {
     const ret : any =  Storage.get({  key: 'traking'});
     const value =   JSON.parse(ret.__zone_symbol__value.value);
   
@@ -57,10 +57,12 @@ export class FiltersServicesService {
     await Storage.remove({ key: 'traking' });
   }
     
-  getToken() {
-    
-    let value  =  Storage.get({ key: 'token' });
-    return value;
+  async getToken() {
+    const { value } = await Storage.get({ key: 'token' });
+    console.log('Got item: ', value);
+    let envio : string = value
+    console.log(envio)
+    return envio.toString();
   }
   async setToken(value){
     await Storage.set({

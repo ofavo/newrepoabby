@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LocationsServicesService } from './services/locations-services.service';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import { CodeNode } from 'source-list-map';
-import { ThrowStmt } from '@angular/compiler';
+
+import { FiltersServicesService } from 'src/app/servicesGenerals/filters-services.service';
 
 @Component({
   selector: 'app-locations',
@@ -21,11 +21,13 @@ export class LocationsPage implements OnInit {
   public datos: Array<any>;
   public search : string = "";
   public buscar : boolean = false;
-  constructor(private http: LocationsServicesService,public ruter: Router) { }
+  constructor(private http: LocationsServicesService,public ruter: Router,public filtres : FiltersServicesService,) { }
 
   ngOnInit() {
-  
-  
+  const token  = this.filtres.getToken().then(data =>{
+    console.log(data)
+  })
+
     this.http.get(this.url).subscribe((data: any)=>{
     console.log(data)
       if(data){

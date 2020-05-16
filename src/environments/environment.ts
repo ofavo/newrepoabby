@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
  //apia: "https://apia.abbymercados.com/api/",
-  apia: "https://apiadev.abbymercados.com/api/",
+  //apia: "https://apiadev.abbymercados.com/api/",
+  apia: "https://222b0a20.ngrok.io/api/",
   //api : "http://192.168.0.100:8999/api/"
   
     //api : "http://192.168.3.2:8999/api/"
