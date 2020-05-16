@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Plugins } from '@capacitor/core'; 
 const { Geolocation } = Plugins;
@@ -8,12 +8,17 @@ const { Geolocation } = Plugins;
   templateUrl: './delivery.page.html',
   styleUrls: ['./delivery.page.scss'],
 })
-export class DeliveryPage implements OnInit {
+export class DeliveryPage implements OnInit, OnDestroy {
 
   constructor(public route : Router) { }
 
   ngOnInit() {
     this.watchPosition()
+  }
+  ngOnDestroy(){
+  
+
+    
   }
   async getCurrentPosition() {
     
@@ -24,16 +29,17 @@ export class DeliveryPage implements OnInit {
   comprobations(coordinates){
     if(coordinates){
       alert(`${coordinates}`)
-      console.log(coordinates)
+      return console.log(coordinates)
     }else{
       console.log(coordinates)
-       this.route.navigateByUrl('folder/locations')
+      return this.route.navigateByUrl('folder/locations')
     }
   }
 
-  watchPosition() {alert('hola')
+  watchPosition() {
     const wait = Geolocation.watchPosition({}, (position, err) => {
-      this.comprobations(position)
+      return this.comprobations(position);
+      
     })
   }
 

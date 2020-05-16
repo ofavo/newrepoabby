@@ -6,8 +6,8 @@ export const environment = {
   production: false,
  //apia: "https://apia.abbymercados.com/api/",
   apia: "https://apiadev.abbymercados.com/api/",
-  api : "http://192.168.0.100:8999/api/"
-  //api :  "https://apibdev.abbymercados.com/api/" 
+  //api : "http://192.168.0.100:8999/api/"
+  api :  "https://apibdev.abbymercados.com/api/" 
  //api : "https://apib.abbymercados.com/api/"
 };
 
