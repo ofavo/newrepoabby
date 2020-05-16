@@ -13,17 +13,50 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./presentations.page.scss'],
 })
 export class PresentationsPage implements OnInit {
-  public url = environment.api+ "presentationProduct?productid=";
+  public url = environment.api+ "presentationProduct";
   public datos : any = [];
   public name: any = "";
   public buttonRemove: boolean = true;
   public cartProducts: Array<any> = [];
   // public quantity: number = 1;
-  // public products : Array<any> = [
-  // ];
   public products : Array<any> = [
    
   ];
+  // public products : Array<any> = [
+  //   {
+  //     id: 1,
+  //     img: "../../assets/harinapan.jpg",
+  //     name: "Harina Pan 1kg",
+  //     price: 2,
+  //     category: "Viveres",
+  //     description: "Viveres, Viveres, Viveres, Viveres, Viveres, Viveres, Viveres",
+  //     quantity: 0
+  //   },
+  //   {
+  //     id: 2,
+  //     img: "../../assets/harinadetrigo.jpg",
+  //     name: "Harina de trigo Juana 1kg",
+  //     price: 2,
+  //     category: "Viveres",
+  //     quantity: 0
+  //   },
+  //   {
+  //     id: 3,
+  //     img: "../../assets/mayonesa.png",
+  //     name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
+  //     price: 3,
+  //     category: "Viveres",
+  //     quantity: 0
+  //   },
+  //   {
+  //     id: 4,
+  //     img: "../../assets/salsadetomate.jpg",
+  //     name: "Salsa de Tomate Heinz 400ml",
+  //     price: 4,
+  //     category: "Viveres",
+  //     quantity: 0
+  //   },
+  // ];
   public id : string = "";
 
   constructor(public http: PresentationsServicesService,public modalController: ModalController,public ruter: Router,
@@ -43,7 +76,6 @@ export class PresentationsPage implements OnInit {
     })
     
   }
-
 
   goFilters(){
     this.ruter.navigate(['/folder','categorys',`${this.id}`,`${this.name}`])
@@ -76,10 +108,8 @@ export class PresentationsPage implements OnInit {
         item.add = true;
         item.quantity = 1
         this.cartProducts.push(item)
-        console.log('cartProductAdd: ',this.cartProducts)
       }
     })
-    //product es el producto entero, no sé donde lo vas a guardar pero ahi está para que le hagas post o algo.
    }
 
    lessProduct(id){
@@ -88,13 +118,11 @@ export class PresentationsPage implements OnInit {
         if(this.products[i].quantity > 1){
           this.products[i].quantity = this.products[i].quantity - 1 
         }else{
-        //Aqui vas a poner cuando vayas a eliminar el producto, por ahora te lo dejaré que se oculte el input
           this.cartProducts.forEach((item, index) => {
             if(id == item.id){
               item.add = false;
               item.quantity = item.quantity - 1
               this.cartProducts.splice(index, 1)
-              console.log('cartProductRemove: ',this.cartProducts)
             }
           })
         } 
@@ -110,7 +138,7 @@ export class PresentationsPage implements OnInit {
         }
       }
     }
-    //Cada vez que sumes o restes tienes que actualizar el producto en carrito
+    
  }
 
   async presentModal() {
