@@ -51,7 +51,7 @@ export class FiltersServicesService {
   }
   async getItemTraking() {
     const ret : any =  Storage.get({  key: 'traking'});
-    const value =   JSON.parse(ret.__zone_symbol__value.value);
+    const value =   JSON.parse(ret.value);
     return value;
   }
   
@@ -61,13 +61,13 @@ export class FiltersServicesService {
     
   async getToken() {
     const { value } = await Storage.get({ key: 'token' });
-    console.log('Got item: ', value);
+   
     let envio : string = value
-    console.log(envio)
+  
     return envio.toString();
   }
 
-  async setToken(value){
+  async setToken(value: any){
     await Storage.set({
       key: 'token',
       value: value

@@ -25,16 +25,16 @@ export class LocationsPage implements OnInit {
 
   ngOnInit() {
   const token  = this.filtres.getToken().then(data =>{
-    console.log(data)
+
   })
 
     this.http.get(this.url).subscribe((data: any)=>{
-    console.log(data)
+  
       if(data){
          Object.keys(data.data).forEach((e)=>{
         if(Object.keys(data.data[e].City).length > 0){
           this.temDatos.push(data.data[e])
-          console.log(this.temDatos)
+         
         } 
       })
       }

@@ -30,10 +30,10 @@ export class LoginPage implements OnInit {
     this.http.postLogin(`${environment.apia}users/login`,env).subscribe((data: any)=>{
      
       if(data){
-        this.filtres.setToken(data.token)
+     
         this.router.navigateByUrl('folder/locations')
         this.filters.setToken(data.token);
-        console.log(data.token)
+      
       }
     },err =>{
      this.presentAlert()
