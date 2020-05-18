@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 
 import { FiltersServicesService } from 'src/app/servicesGenerals/filters-services.service';
+import { LoadingService } from 'src/app/servicesGenerals/loading.service';
 
 @Component({
   selector: 'app-locations',
@@ -21,22 +22,28 @@ export class LocationsPage implements OnInit {
   public datos: Array<any>;
   public search : string = "";
   public buscar : boolean = false;
-  constructor(private http: LocationsServicesService,public ruter: Router,public filtres : FiltersServicesService,) { }
+  constructor(private http: LocationsServicesService,public ruter: Router,public loading : LoadingService,
+    public filtres : FiltersServicesService,) { 
+      this.loading.presentLoading()
+    }
 
   ngOnInit() {
   const token  = this.filtres.getToken().then(data =>{
-    console.log(data)
+
   })
 
     this.http.get(this.url).subscribe((data: any)=>{
-    console.log(data)
+  
       if(data){
          Object.keys(data.data).forEach((e)=>{
         if(Object.keys(data.data[e].City).length > 0){
           this.temDatos.push(data.data[e])
-          console.log(this.temDatos)
+         
         } 
       })
+      setTimeout(() => {
+        this.loading.closeloading()
+      }, 200);
       }
      
       

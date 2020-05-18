@@ -5,7 +5,7 @@ import { FiltersServicesService } from '../../servicesGenerals/filters-services.
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
 import { ModalController } from '@ionic/angular';
-import { PopoverController } from '@ionic/angular';
+import { LoadingService } from 'src/app/servicesGenerals/loading.service';
 
 
 
@@ -22,11 +22,12 @@ export class ProductsPage implements OnInit {
   public id : string = "";
   public filtro : any = []; 
   public temDatos : any = [];
-  constructor(private http: ProductsServicesService,public ruter: Router, public popoverT : PopoverController,
+  constructor(private http: ProductsServicesService,public ruter: Router, public loading : LoadingService,
     public modalController: ModalController,private rutaActiva: ActivatedRoute,public filters : FiltersServicesService) { 
     
     this.name = this.rutaActiva.snapshot.params.name;
     this.id = this.rutaActiva.snapshot.params.id;
+    this.loading.presentLoading()
   }
 
   ngOnInit() {
@@ -39,6 +40,7 @@ export class ProductsPage implements OnInit {
       this.datos = data.data;
       console.log(this.datos);
       this.temDatos = this.datos.slice();
+      this.loading.closeloading()
     });
      }
    })
