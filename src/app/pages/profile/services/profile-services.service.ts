@@ -10,8 +10,8 @@ export class ProfileServicesService {
 
   constructor(public http: HttpClient) { }
 
-  putUser(url,env){
-    return this.http.put(url,env);
+  putUser(url,env,headers){
+    return this.http.put(url,env,headers);
   }
 
   getUser(url, headers){

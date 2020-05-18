@@ -13,11 +13,14 @@ import { FiltersServicesService} from '../../servicesGenerals/filters-services.s
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  public name : string = "";
+  public id : string = "";
+  public firstname : string = "";
+  public lastname : string = "";
   public email : string = "";
   public password : string ="";
   public dni : string = "";
   public url : string = environment.apia + "users?self";
+  public urlput : string = environment.apia + "users/";
   public passwordConfirm : string ="";
   public buttonActive : boolean = false;
   public buttonDrop : boolean = false;
@@ -25,34 +28,41 @@ export class ProfilePage implements OnInit {
   public buttonPhoto: boolean = false;
   public photo: SafeResourceUrl;
   public photoProfile: SafeResourceUrl;
+  public users: any = [];
 
   constructor(private sanitizer: DomSanitizer,public http: ProfileServicesService,  public router: Router,public alertController: AlertController,
     public filters : FiltersServicesService) { }
 
   ngOnInit() {
-    this.filters.getToken().then((data: any)=>{
-      console.log('token: ', data.value)
+    this.filters.getToken().then((envio)=>{
       const headers = {
         'Content-Type' : 'application/json',
-        'Authorization' : data.value
+        'Authorization' : envio
       }
-      this.http.getUser(this.url, headers).subscribe((data: any)=>{
-        console.log(data)
+      this.http.getUser(this.url, {headers: headers}).subscribe((data: any)=>{
+        this.users = data
+        this.id = data.id
+        console.log('User: ',this.id)
       })
     })
   }
 
   sentData() {
     let env = {
-      name : this.name,
+      firstname : this.firstname,
+      lastname : this.lastname,
       email : this.email,
-      password : this.password,
-      dni : this.dni
     }
-    this.http.putUser(this.url,env).subscribe((data: any)=>{
-
-    },err =>{
-     this.presentAlert()
+    this.filters.getToken().then((envio)=>{
+      const headers = {
+        'Content-Type' : 'application/json',
+        'Authorization' : envio
+      }
+      this.http.putUser(this.urlput+this.id,env,{headers: headers}).subscribe((data: any)=>{
+        console.log('se actualizo correctamente')
+      },err =>{
+        console.log('no se actualizo')
+      })
     })
   }
 

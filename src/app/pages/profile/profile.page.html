@@ -25,15 +25,19 @@
   </div>
   <ion-item>
     <ion-icon name="person-circle-outline"></ion-icon>
-    <ion-input class="profile-input" placeholder="Nombre completo" value="Génesis Ramírez"></ion-input>
+    <ion-input class="profile-input profile-text-t" [(ngModel)]="firstname" placeholder="Nombres" value="{{users.firstname}}"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="remove-outline"></ion-icon>
+    <ion-input class="profile-input profile-text-t" [(ngModel)]="lastname" placeholder="Apellidos" value="{{users.lastname}}"></ion-input>
   </ion-item>
   <ion-item>
     <ion-icon name="mail-outline"></ion-icon>
-    <ion-input class="profile-input" placeholder="Correo electrónico" value="ateamdev.genesisnr@gmail.com"></ion-input>
+    <ion-input class="profile-input" [(ngModel)]="email" placeholder="Correo electrónico" value="{{users.email}}"></ion-input>
   </ion-item>
   <ion-item>
     <ion-icon name="card-outline"></ion-icon>
-    <ion-input class="profile-input" placeholder="DNI" value="22.035.564"></ion-input>
+    <ion-input class="profile-input" placeholder="DNI"></ion-input>
   </ion-item>
   <div>
     <ion-button expand="full" class="profile-btn" (click)="buttonDropdown();" color="light">Cambiar contraseña</ion-button>
@@ -61,6 +65,6 @@
     </div>
   </div>
   <div class="ion-text-center">
-    <ion-button class="profile-btn" color="primary">Guardar Cambios</ion-button>
+    <ion-button class="profile-btn" (click)="sentData();" color="primary">Guardar Cambios</ion-button>
 </div>
 </ion-content>
