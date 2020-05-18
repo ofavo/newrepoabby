@@ -5,7 +5,7 @@ import { PresentationsServicesService } from './services/presentations-services.
 import { environment } from '../../../environments/environment';
 import { CardComponent } from '../../components/card/card.component';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { LoadingService } from '../../servicesGenerals/loading.service';
 
 @Component({
   selector: 'app-presentations',
@@ -18,61 +18,30 @@ export class PresentationsPage implements OnInit {
   public name: any = "";
   public buttonRemove: boolean = true;
   public cartProducts: Array<any> = [];
-  // public quantity: number = 1;
   public products : Array<any> = [
-   
   ];
-  // public products : Array<any> = [
-  //   {
-  //     id: 1,
-  //     img: "../../assets/harinapan.jpg",
-  //     name: "Harina Pan 1kg",
-  //     price: 2,
-  //     category: "Viveres",
-  //     description: "Viveres, Viveres, Viveres, Viveres, Viveres, Viveres, Viveres",
-  //     quantity: 0
-  //   },
-  //   {
-  //     id: 2,
-  //     img: "../../assets/harinadetrigo.jpg",
-  //     name: "Harina de trigo Juana 1kg",
-  //     price: 2,
-  //     category: "Viveres",
-  //     quantity: 0
-  //   },
-  //   {
-  //     id: 3,
-  //     img: "../../assets/mayonesa.png",
-  //     name: "Mayonesa Mavesa 500ml Harina de trigo Juana 1kg",
-  //     price: 3,
-  //     category: "Viveres",
-  //     quantity: 0
-  //   },
-  //   {
-  //     id: 4,
-  //     img: "../../assets/salsadetomate.jpg",
-  //     name: "Salsa de Tomate Heinz 400ml",
-  //     price: 4,
-  //     category: "Viveres",
-  //     quantity: 0
-  //   },
-  // ];
   public id : string = "";
 
-  constructor(public http: PresentationsServicesService,public modalController: ModalController,public ruter: Router,
+  constructor(public http: PresentationsServicesService, public loading : LoadingService,
+    public modalController: ModalController,public ruter: Router,
      public alertController: AlertController, public toastController: ToastController,private rutaActiva: ActivatedRoute) {
        this.id = this.rutaActiva.snapshot.params.id;
        this.name = this.rutaActiva.snapshot.params.name;
       }
 
   ngOnInit() {
+    this.loading.presentLoading();
     this.http.getPresentations(this.url+this.id+"&pages=1000").subscribe((data: any)=>{
-      this.products = data.data;
-      console.log(this.products)
+      if(data){
+         this.products = data.data;
+    
       this.datos = this.products.slice();
-    for(const i in this.datos){
-      this.datos[i].add = false
-    }
+     for(const i in this.datos){
+         this.datos[i].add = false
+        }
+        this.loading.closeloading();
+      }
+     
     })
     
   }

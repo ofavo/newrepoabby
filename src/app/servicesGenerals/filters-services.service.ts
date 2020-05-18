@@ -45,7 +45,8 @@ export class FiltersServicesService {
         observations: value.observations,
         qr: value.qr,
         account: value.account,
-        userid: value.userid
+        userid: value.userid,
+        traking: value.traking[0]
       })
     });
   }
