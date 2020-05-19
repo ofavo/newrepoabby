@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-button class="card-back" color="primary" slot="start" (click)="dismiss()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+      <ion-button class="directions-back" color="primary" slot="start" (click)="dismiss()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
   
     <ion-title>Crear Direccion de Envío</ion-title>
   </ion-toolbar>
@@ -8,6 +8,7 @@
 <ion-content fullscreen>
    <ion-list>
         <ion-item>
+          <ion-icon name="globe-outline"></ion-icon>
           <ion-label>Pais</ion-label>
           <ion-select value="1" >
             
@@ -16,6 +17,7 @@
         </ion-item>
 
         <ion-item>
+          <ion-icon name="navigate-circle-outline"></ion-icon>
           <ion-label>Estado</ion-label>
           <ion-select >
             <ion-select-option value="nes">NES</ion-select-option>
@@ -28,6 +30,7 @@
         </ion-item>
 
         <ion-item>
+          <ion-icon name="business-outline"></ion-icon>
           <ion-label>Ciudad</ion-label>
           <ion-select>
             <ion-select-option value="enable">Enable</ion-select-option>
@@ -38,6 +41,7 @@
         </ion-item>
 
         <ion-item>
+          <ion-icon name="trail-sign-outline"></ion-icon>
           <ion-label>Calle</ion-label>
           <ion-select ok-text="Okay" cancel-text="Nah">
             <ion-select-option value="dos">DOS</ion-select-option>
@@ -51,6 +55,7 @@
         </ion-item>
 
         <ion-item>
+          <ion-icon name="walk-outline"></ion-icon>
           <ion-label>Redoma </ion-label>
           <ion-select value="03">
             <ion-select-option value="01">Alice in Chains</ion-select-option>
@@ -64,6 +69,7 @@
         </ion-item>
 
         <ion-item>
+          <ion-icon name="home-outline"></ion-icon>
           <ion-label>casa</ion-label>
           <ion-select value="12">
             <ion-select-option value="01">January</ion-select-option>
@@ -82,10 +88,13 @@
         </ion-item>
 
         <ion-item>
+          <ion-icon name="navigate-outline"></ion-icon>
           <ion-textarea placeholder="Completa tu dirección"></ion-textarea>
         </ion-item>
       </ion-list>
-      <ion-button class="card-buy"color="primary" >
-      Guardar
-      </ion-button>
+      <div class="directions-total">
+        <ion-button class="directions-buy"color="primary" >
+          Guardar
+        </ion-button>
+      </div>
 </ion-content>

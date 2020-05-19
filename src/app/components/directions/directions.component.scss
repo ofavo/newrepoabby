@@ -1,0 +1,45 @@
+.directions-back {
+    --box-shadow: none;
+}
+
+ion-select {
+    color: #5c696d;
+}
+
+ion-item {
+    padding: 0.5rem 0 0 0;
+}
+
+ion-title {
+    padding-left: 0;
+}
+
+ion-list {
+    padding: 0.5rem;
+}
+
+ion-label {
+    font-size: 18px !important;
+    --color: #3a4042 !important;
+}
+
+ion-textarea {
+    color: #3a4042;
+}
+
+ion-icon {
+    margin-right: 1rem;
+}
+
+.directions-total {
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    padding: 1rem 0;
+    background: #fff;
+}
+
+.directions-buy {
+    width: 95%;
+    --border-radius: 50px;
+}
