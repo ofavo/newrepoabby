@@ -44,8 +44,11 @@ ion-img {
 
 .locations-search {
     color: #516169;
+   
 }
-
+input{
+     --border-radius: 50px;
+}
 .locations-div-m {
     display: flex;
     justify-content: center;

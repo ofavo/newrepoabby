@@ -6,60 +6,16 @@
 
 <ion-content>
   <ion-list >
-    <ion-item>
+    <ion-item *ngFor="let datos of datos"> 
       <div class="category-w-img">
         <ion-img src="../../assets/image1302-8-7-1-5.png"></ion-img>
       </div>
-      <ion-label>Viveres</ion-label>
+      <ion-label>{{datos.categories_of_store_name}}</ion-label>
       <div>
-        <ion-checkbox (click)="addcategory($event,6)"></ion-checkbox>
+        <ion-checkbox (click)="addcategory($event,datos.categories_of_store_id)"></ion-checkbox>
       </div>
     </ion-item>
-    <ion-item>
-      <div class="category-w-img">
-        <ion-img src="../../assets/image977-5-8-4-1.png"></ion-img>
-      </div>
-      <ion-label>Verduras</ion-label>
-      <div>
-        <ion-checkbox (click)="addcategory($event,6)"></ion-checkbox>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div class="category-w-img">
-        <ion-img src="../../assets/image1302-8-7-1-5.png"></ion-img>
-      </div>
-      <ion-label>Carnes</ion-label>
-      <div>
-        <ion-checkbox (click)="addcategory($event,6)"></ion-checkbox>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div class="category-w-img">
-        <ion-img src="../../assets/image1302-8-7-1-5.png"></ion-img>
-      </div>
-      <ion-label>Viveres</ion-label>
-      <div>
-        <ion-checkbox (click)="addcategory($event,6)"></ion-checkbox>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div class="category-w-img">
-        <ion-img src="../../assets/image977-5-8-4-1.png"></ion-img>
-      </div>
-      <ion-label>Verduras</ion-label>
-      <div>
-        <ion-checkbox (click)="addcategory($event,6)"></ion-checkbox>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div class="category-w-img">
-        <ion-img src="../../assets/image1302-8-7-1-5.png"></ion-img>
-      </div>
-      <ion-label>Carnes</ion-label>
-      <div>
-        <ion-checkbox (click)="addcategory($event,6)"></ion-checkbox>
-      </div>
-    </ion-item>
+  
   </ion-list>
   <div class="category-w"></div>
   <div class="category-btn">

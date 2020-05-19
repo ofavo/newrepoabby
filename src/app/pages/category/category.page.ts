@@ -12,7 +12,7 @@ import { FiltersServicesService } from 'src/app/servicesGenerals/filters-service
   styleUrls: ['./category.page.scss'],
 })
 export class CategoryPage implements OnInit {
-  public url = environment.api + "categoriesForProduct/?storeid=";
+  public url = environment.api + "categoriesForStore?storeid=";
   public datos: any = [] 
   public name: any = "";
   public categories: any = []
@@ -27,6 +27,7 @@ export class CategoryPage implements OnInit {
 
   ngOnInit() {
    this.http.get(this.url+this.id).subscribe((data: any)=>{
+     this.datos = data.data
      console.log(data)
      console.log('hola')
    })
@@ -44,7 +45,7 @@ export class CategoryPage implements OnInit {
   }
   addcategory(id, idn){
     if(id.target.firstChild.value === 'on'){
-      this.idenv = this.idenv.splice(idn,1)
+      this.idenv = this.idenv.splice(idn)
       console.log('apagado')
       console.log(this.idenv)
     }else{

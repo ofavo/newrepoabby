@@ -13,7 +13,7 @@ import { LoadingService } from '../../servicesGenerals/loading.service';
   styleUrls: ['./presentations.page.scss'],
 })
 export class PresentationsPage implements OnInit {
-  public url = environment.api+ "presentationProduct";
+  public url = environment.api+ "presentations/";
   public datos : any = [];
   public name: any = "";
   public buttonRemove: boolean = true;
@@ -31,9 +31,9 @@ export class PresentationsPage implements OnInit {
 
   ngOnInit() {
     this.loading.presentLoading();
-    this.http.getPresentations(this.url+this.id+"&pages=1000").subscribe((data: any)=>{
+    this.http.getPresentations(this.url+this.id).subscribe((data: any)=>{
       if(data){
-         this.products = data.data;
+         this.products = data;
     
       this.datos = this.products.slice();
      for(const i in this.datos){
