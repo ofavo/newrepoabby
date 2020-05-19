@@ -13,7 +13,8 @@ export class DeliveryPage implements OnInit, OnDestroy {
   constructor(public route : Router) { }
 
   ngOnInit() {
-    this.watchPosition()
+    this.watchPosition();
+  
   }
   ngOnDestroy(){
   
