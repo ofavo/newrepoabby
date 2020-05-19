@@ -2,7 +2,7 @@
 
 <ion-content >
 <ion-img src="assets/image977-5-8-4-1.png"></ion-img>
-<img src="assets/LB.png" />
+<img src="assets/avatar_blanco.png" />
     <ion-card id="container">
         <ion-card-header>
             BIENVENIDO
@@ -19,8 +19,9 @@
                       <ion-button class="btn-m" *ngIf="buttonActive" (click)="sentData()" >Entrar </ion-button>
                       <ion-button class="btn-m" *ngIf="!buttonActive" (click)="sentData()" disabled>Entrar </ion-button>
                         <br />
-                        <a routerLink="/register" class="btn-black">Registrase</a>
-                        <br />
+                        <div class="login-register">
+                           <a routerLink="/register" class="btn-black">Registrase</a> 
+                        </div>
                         <a class="btn-black" (click)="recoverPassword()">Recuperar Contraseña</a>
         </ion-card-content>
     </ion-card>
