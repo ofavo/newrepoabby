@@ -1,5 +1,8 @@
-  import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FiltersServicesService} from '../servicesGenerals/filters-services.service';
+import { FolderServicesService } from '../servicesGenerals/folder-services.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-folder',
@@ -8,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FolderPage implements OnInit {
   public selectedIndex = 0;
+  public url : string = environment.apia + "users?self";
+  public users: any = [];
   public appPages = [
     {
       title: 'Perfil',
@@ -38,9 +43,18 @@ export class FolderPage implements OnInit {
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, public filters : FiltersServicesService, public http: FolderServicesService) { }
 
   ngOnInit() {
+    this.filters.getToken().then((envio)=>{
+      const headers = {
+        'Content-Type' : 'application/json',
+        'Authorization' : envio
+      }
+      this.http.getUser(this.url, {headers: headers}).subscribe((data: any)=>{
+        this.users = data
+      })
+    })
 
   }
 

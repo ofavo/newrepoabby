@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
+import { ToastController } from '@ionic/angular';
 import { FiltersServicesService} from '../../servicesGenerals/filters-services.service';
 
 @Component({
@@ -31,7 +32,7 @@ export class ProfilePage implements OnInit {
   public users: any = [];
 
   constructor(private sanitizer: DomSanitizer,public http: ProfileServicesService,  public router: Router,public alertController: AlertController,
-    public filters : FiltersServicesService) { }
+    public filters : FiltersServicesService, public toastController: ToastController) { }
 
   ngOnInit() {
     this.filters.getToken().then((envio)=>{
@@ -42,7 +43,6 @@ export class ProfilePage implements OnInit {
       this.http.getUser(this.url, {headers: headers}).subscribe((data: any)=>{
         this.users = data
         this.id = data.id
-        console.log('User: ',this.id)
       })
     })
   }
@@ -59,11 +59,27 @@ export class ProfilePage implements OnInit {
         'Authorization' : envio
       }
       this.http.putUser(this.urlput+this.id,env,{headers: headers}).subscribe((data: any)=>{
-        console.log('se actualizo correctamente')
+        this.toastUpdateProfile()
       },err =>{
-        console.log('no se actualizo')
+        this.toastUpdateProfileNo()
       })
     })
+  }
+
+  async toastUpdateProfile() {
+    const toast = await this.toastController.create({
+      message: 'Sus datos se han actualizado correctamente',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async toastUpdateProfileNo() {
+    const toast = await this.toastController.create({
+      message: 'Sus datos no se han actualizado',
+      duration: 2000
+    });
+    toast.present();
   }
 
   async presentAlert() {
