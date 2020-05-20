@@ -30,6 +30,7 @@ export class FiltersServicesService {
   }
 
   async setItemTraking(value){
+    console.log(value)
     await Storage.set({
       key: 'traking',
       value  : JSON.stringify( {
@@ -46,13 +47,13 @@ export class FiltersServicesService {
         qr: value.qr,
         account: value.account,
         userid: value.userid,
-        traking: value.traking[0]
+        traking: value.Tracking[0]
       })
     });
   }
   async getItemTraking() {
     const ret : any =  Storage.get({  key: 'traking'});
-    const value =   JSON.parse(ret.value);
+    const value =   ret
     return value;
   }
   

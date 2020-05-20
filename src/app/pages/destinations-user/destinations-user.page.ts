@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FiltersServicesService } from '../../servicesGenerals/filters-services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-destinations-user',
@@ -8,12 +9,15 @@ import { FiltersServicesService } from '../../servicesGenerals/filters-services.
 })
 export class DestinationsUserPage implements OnInit {
 public datos : any  = [];
-  constructor(public filters : FiltersServicesService) { }
+  constructor(public filters : FiltersServicesService,public ruter: Router) { }
 
   ngOnInit() {
-    let valor: any = this.filters.getItemTraking();
-    this.datos = valor
-    console.log(this.datos)
+   this,this.filters.getItemTraking().then((data: any) =>{
+     console.log(JSON.parse(data.value))
+   })
+  }
+  createDireccrion(){
+    this.ruter.navigateByUrl('folder/directions-envio')
   }
 
 }

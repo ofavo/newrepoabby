@@ -17,6 +17,7 @@ import { LoadingService } from 'src/app/servicesGenerals/loading.service';
 export class ProductsPage implements OnInit {
 
   public url : string = environment.api + "search/product/store/";
+  public urlfilters : string = environment.api + "search/categories/store/"
   public datos : any = [];
   public name: any = "";
   public id : string = "";
@@ -26,30 +27,43 @@ export class ProductsPage implements OnInit {
     public modalController: ModalController,private rutaActiva: ActivatedRoute,public filters : FiltersServicesService) { 
     
     this.name = this.rutaActiva.snapshot.params.name;
+    console.log(this.name)
     this.id = this.rutaActiva.snapshot.params.id;
-    this.loading.presentLoading()
+   
   }
 
   ngOnInit() {
    
    
   }
-  ionViewDidLoad(){
+  ionViewWillEnter(){
+   this.cargar()
+  }
+  cargar(){ 
+    this.datos = []
+    this.loading.presentLoading()
     this.filters.getItem().then((data: any) => {
+      console.log(data)
       if(data.value){
-        this.filtro = data;
-       this.filters.removeItem()
+        this.filtro.push(data.value);
+        this.http.post(this.urlfilters+this.id,this.filtro).subscribe((data : any)=>{
+          this.datos = data.data
+          this.filters.removeItem()
+       this.loading.closeloading()
+        })
+       
       }else{
          this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
        this.datos = data.data;
        console.log(this.datos);
        this.temDatos = this.datos.slice();
        this.loading.closeloading()
+     }, err =>{
+       this.loading.closeloading();
      });
       }
     })
   }
-
   goPresentatios(id,name){
     this.ruter.navigate(['/folder','presentations',`${id}`,`${name}`])
   }

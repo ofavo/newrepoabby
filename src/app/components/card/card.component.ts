@@ -92,10 +92,9 @@ export class CardComponent implements OnInit {
   }
 
   sentPedido(){
-    alert('hola1')
+  
     if (this.products.length > 0){
-      alert('hola2')
-
+    
       for (let i =0; i < this.products.length;i++){
         const valor = {
           inventory_id: this.products[i].inventories[0].inventoriesId ,
@@ -106,9 +105,9 @@ export class CardComponent implements OnInit {
         }
         this.envio.detail.push(valor)
         if((i + 1) === this.products.length ){
-          alert('hola3')
+          
          this.cardservices.postOrdes(this.url,this.envio).subscribe((data : any) => {
-           console.log(data.result[0  ])
+           console.log(data.result[0])
             this.filters.setItemTraking(data.result[0])
             this.modalController.dismiss().then(data =>{
               this.ruter.navigateByUrl('folder/destinations-user')
@@ -116,7 +115,7 @@ export class CardComponent implements OnInit {
             
          })
         }
-      }
+      } 
     }
   }
 

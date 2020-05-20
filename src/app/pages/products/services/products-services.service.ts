@@ -12,4 +12,7 @@ export class ProductsServicesService {
   get(url){
     return this.http.get(url);
   }
+  post(url,env){
+    return this.http.post(url,env)
+  }
 }

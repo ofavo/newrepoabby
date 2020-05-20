@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+
 import { environment } from 'src/environments/environment';
-import { CardComponent } from 'src/app/components/card/card.component';
+
 import { ServiceCategoryService } from './services/service-category.service';
 import { FiltersServicesService } from 'src/app/servicesGenerals/filters-services.service';
-
+import { ProductsPage } from '../products/products.page';
 @Component({
   selector: 'app-category',
   templateUrl: './category.page.html',
@@ -13,14 +13,16 @@ import { FiltersServicesService } from 'src/app/servicesGenerals/filters-service
 })
 export class CategoryPage implements OnInit {
   public url = environment.api + "categoriesForStore?storeid=";
+  
   public datos: any = [] 
   public name: any = "";
   public categories: any = []
   public temDatos: any = [];
   public id : string = "";
   public idenv: any = [];
-  constructor(public http : ServiceCategoryService ,public ruter: Router, public filters : FiltersServicesService, 
-    private rutaActiva: ActivatedRoute,public modalController: ModalController) { 
+  
+  constructor(public product : ProductsPage,public http : ServiceCategoryService ,public ruter: Router, public filters : FiltersServicesService, 
+    private rutaActiva: ActivatedRoute) { 
     this.name = this.rutaActiva.snapshot.params.name;
     this.id = this.rutaActiva.snapshot.params.id;
   }
@@ -36,6 +38,7 @@ export class CategoryPage implements OnInit {
   goCategoryProducts(){
     if(this.idenv.length > 0){
        this.filters.setItem(this.idenv)
+       
     this.ruter.navigate(['/folder','products',`${this.id}`, `${this.name}`])
     }else{
       this.filters.removeItem()
