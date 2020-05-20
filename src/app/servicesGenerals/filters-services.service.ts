@@ -79,5 +79,23 @@ export class FiltersServicesService {
   async removeToken() {
     await Storage.remove({ key: 'token' });
   }
+  async getCity() {
+    const { value } = await Storage.get({ key: 'city' });
+   
+    let envio : string = value
+  
+    return envio.toString();
+  }
+
+  async setCity(value: any){
+    await Storage.set({
+      key: 'city',
+      value: value
+    });
+  }
+
+  async removeCity() {
+    await Storage.remove({ key: 'city' });
+  }
 
 }

@@ -50,7 +50,9 @@ export class LocationsPage implements OnInit {
     })
   }
   
-  goCity(id,name){
+  goCity(id,name,city){
+
+    this.filtres.setCity(city);
     this.ruter.navigate(['/folder','products',`${id}`,`${name}`])
   }
    serchLocations(ev: any){

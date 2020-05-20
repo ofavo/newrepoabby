@@ -16,7 +16,7 @@
   <div class="locations-div-m">
     <ion-list class="locations-list" *ngFor="let datos of datos">
      
-      <ion-item class="locations-labels" *ngFor="let city of datos.City" (click)="goCity(city.id,city.name)">
+      <ion-item class="locations-labels" *ngFor="let city of datos.City" (click)="goCity(city.id,city.name,city.cityId)">
         <ion-label>{{city.name}}</ion-label>
       </ion-item>
     </ion-list>

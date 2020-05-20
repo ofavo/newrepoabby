@@ -47,7 +47,7 @@ const routes: Routes = [
       loadChildren: () => import('../pages/destinations-user/destinations-user.module').then( m => m.DestinationsUserPageModule)
     },
     {
-      path: 'directions-envio/:id',
+      path: 'directions-envio',
       loadChildren: () => import('../pages/directions-envio/directions-envio.module').then( m => m.DirectionsEnvioPageModule)
     }
   

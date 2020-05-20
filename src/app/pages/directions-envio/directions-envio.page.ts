@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+
 import { DirectionsComponent } from 'src/app/components/directions/directions.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-directions-envio',
@@ -8,8 +9,10 @@ import { DirectionsComponent } from 'src/app/components/directions/directions.co
   styleUrls: ['./directions-envio.page.scss'],
 })
 export class DirectionsEnvioPage implements OnInit {
-
-  constructor(public modalController: ModalController,) { }
+  public city: string = ''
+  constructor(public modalController: ModalController) {
+   
+   }
 
   ngOnInit() {
   }
