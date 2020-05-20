@@ -31,20 +31,23 @@ export class ProductsPage implements OnInit {
   }
 
   ngOnInit() {
-   this.filters.getItem().then((data: any) => {
-     if(data.value){
-       this.filtro = data;
-      this.filters.removeItem()
-     }else{
-        this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
-      this.datos = data.data;
-      console.log(this.datos);
-      this.temDatos = this.datos.slice();
-      this.loading.closeloading()
-    });
-     }
-   })
    
+   
+  }
+  ionViewDidLoad(){
+    this.filters.getItem().then((data: any) => {
+      if(data.value){
+        this.filtro = data;
+       this.filters.removeItem()
+      }else{
+         this.http.get(this.url+this.id+"?pages=1000").subscribe((data: any)=>{
+       this.datos = data.data;
+       console.log(this.datos);
+       this.temDatos = this.datos.slice();
+       this.loading.closeloading()
+     });
+      }
+    })
   }
 
   goPresentatios(id,name){
