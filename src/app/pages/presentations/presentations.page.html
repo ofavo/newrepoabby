@@ -20,7 +20,7 @@
         <img [src]="datos.photo_mobile" />
       </ion-thumbnail>
       <ion-label class="presentations-label">
-        <h2>{{datos.product_name}} {{datos.presentationName}} {{datos.offerPrice}}$</h2>
+        <h2>{{datos.product_name}} {{datos.presentationName}} {{datos.salePrice}}$</h2>
       
       </ion-label>
       <ion-button *ngIf="!datos.add" (click)="addProductButton(datos.id)" class="add-btn"color="primary">

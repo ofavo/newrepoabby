@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { TabsPageRoutingModule } from './tabs-routing.module';
-
+import { DetailsComponent} from '../components/details/details.component';
 import { TabsPage } from './tabs.page';
 
 @NgModule({
@@ -12,8 +12,10 @@ import { TabsPage } from './tabs.page';
     IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    DetailsComponent
   ],
+  entryComponents: [DetailsComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   declarations: [TabsPage]
 })
