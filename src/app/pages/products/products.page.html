@@ -12,12 +12,12 @@
       <ion-searchbar placeholder="¿Qué producto buscas?" type="text" debounce="500" (ionInput)="serchProduct($event)"></ion-searchbar>
     </div>
     <ion-list>
-      <ion-item *ngFor="let datos of datos" (click)="goPresentatios(datos.productId,datos.productName)">
+      <ion-item *ngFor="let datos of datos" (click)="goPresentatios(datos.productId,datos.product_name)">
         <ion-thumbnail slot="start">
-          <img [src]="datos.product_photo" />
+          <img [src]="datos.product_photo_mobile" />
         </ion-thumbnail>
         <ion-label>
-          <h2>{{datos.productName}}</h2>
+          <h2>{{datos.product_name}}</h2>
         </ion-label>
       </ion-item>
     </ion-list>

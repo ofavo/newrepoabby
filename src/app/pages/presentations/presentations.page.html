@@ -17,12 +17,11 @@
     </ion-list-header>
     <ion-item *ngFor="let datos of datos">
       <ion-thumbnail button (click)="addProduct(datos.id, datos.name, datos.price, datos.category, datos.img)" slot="start">
-        <img [src]="datos.photo" />
+        <img [src]="datos.photo_mobile" />
       </ion-thumbnail>
       <ion-label class="presentations-label">
-        <h2>{{datos.productName}}</h2>
-        <h2>{{datos.presentationName}}</h2>
-        <h3>{{datos.offerPrice}}$</h3>
+        <h2>{{datos.product_name}} {{datos.presentationName}} {{datos.offerPrice}}$</h2>
+      
       </ion-label>
       <ion-button *ngIf="!datos.add" (click)="addProductButton(datos.id)" class="add-btn"color="primary">
         <ion-icon class="add-icon" name="add-outline"></ion-icon>
