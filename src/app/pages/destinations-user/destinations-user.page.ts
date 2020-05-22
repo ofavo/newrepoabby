@@ -5,6 +5,7 @@ import { DirectionsComponent } from '../../components/directions/directions.comp
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-destinations-user',
@@ -13,9 +14,11 @@ import { environment } from 'src/environments/environment';
 })
 export class DestinationsUserPage implements OnInit {
   public url : string = environment.api + 'tracking';
-public datos : any  = [];
-public id : string = "";
-  constructor(public filters : FiltersServicesService,public ruter: Router, public modal : ModalController, public http : DestinationsUserService) { 
+  public datos : any  = [];
+  public id : string = "";
+  public select : boolean = false;
+  constructor(public filters : FiltersServicesService,public ruter: Router, public modal : ModalController, 
+    public http : DestinationsUserService, public toastController: ToastController) { 
 
   }
 
@@ -50,7 +53,6 @@ public id : string = "";
       observations: "",
       accout: 1,
       userid:this.datos.userid
-
     }
     let respuesta : any= this.http.post(this.url,evn)
     if(respuesta == 'Error'){
@@ -58,5 +60,22 @@ public id : string = "";
     }else{
       this.ruter.navigateByUrl('/folder/orders/tab1')
     }
+  }
+
+  onChangeSelect(e) {
+    if(e){
+      this.select = true;
+      this.presentToast()
+    } else {
+      this.select = false;
+    }
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Recuerde avisarle al usuario de destino.',
+      duration: 2000
+    });
+    toast.present();
   }
 }
