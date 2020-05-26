@@ -16,13 +16,12 @@
       Presentaciones
     </ion-list-header>
     <ion-item *ngFor="let datos of datos">
-      <ion-thumbnail button (click)="addProduct(datos.id, datos.name, datos.price, datos.category, datos.img)" slot="start">
+      <ion-thumbnail button (click)="addProduct(datos.id, datos.product_name, datos.presentation_product_description)" slot="start">
         <img [src]="datos.photo_mobile" />
       </ion-thumbnail>
-      <ion-label class="presentations-label">
-        <h2>{{datos.product_name}} {{datos.presentationName}} {{datos.salePrice}}$</h2>
-      
-      </ion-label>
+      <ion-item button (click)="addProduct(datos.id, datos.product_name, datos.presentation_product_description)" class="presentations-label">
+        <h5>{{datos.product_name}} {{datos.presentationName}} {{datos.salePrice}}$</h5>
+      </ion-item>
       <ion-button *ngIf="!datos.add" (click)="addProductButton(datos.id)" class="add-btn"color="primary">
         <ion-icon class="add-icon" name="add-outline"></ion-icon>
       </ion-button>

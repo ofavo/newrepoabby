@@ -32,6 +32,7 @@ export class PresentationsPage implements OnInit {
   ngOnInit() {
     this.loading.presentLoading();
     this.http.getPresentations(this.url+this.id).subscribe((data: any)=>{
+      console.log('data: ',data)
       if(data){
          this.products = data.data;
     
@@ -121,33 +122,11 @@ export class PresentationsPage implements OnInit {
   }
 
 
-  async addProduct(id, name, price, category, img) {
+  async addProduct(id, product_name, presentation_product_description) {
     const alert = await this.alertController.create({
-      header: name,
-      subHeader: "descripcion del producto",
-      inputs: [
-        {
-          name: 'name6',
-          type: 'number',
-          placeholder: '¿Cuántos desea añadir?'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Añadir',
-          handler: () => {
-            console.log('Confirm Ok');
-          }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }
-      ]
+      header: product_name,
+      subHeader: presentation_product_description,
+      buttons: ['OK']
     });
 
     await alert.present();
