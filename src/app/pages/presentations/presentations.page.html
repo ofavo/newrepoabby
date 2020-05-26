@@ -20,7 +20,10 @@
         <img [src]="datos.photo_mobile" />
       </ion-thumbnail>
       <ion-item button (click)="addProduct(datos.id, datos.product_name, datos.presentation_product_description)" class="presentations-label">
-        <h5>{{datos.product_name}} {{datos.presentationName}} {{datos.salePrice}}$</h5>
+        <ion-label>
+          <h5><b>{{datos.product_name}}</b> {{datos.presentationName}}</h5>
+          <h5>{{datos.salePrice}}$</h5>
+        </ion-label>
       </ion-item>
       <ion-button *ngIf="!datos.add" (click)="addProductButton(datos.id)" class="add-btn"color="primary">
         <ion-icon class="add-icon" name="add-outline"></ion-icon>
