@@ -24,15 +24,17 @@ export class LocationsPage implements OnInit {
   public buscar : boolean = false;
   constructor(private http: LocationsServicesService,public ruter: Router,public loading : LoadingService,
     public filtres : FiltersServicesService,) { 
-      this.loading.presentLoading()
+      
     }
 
-  ngOnInit() {
+  ngOnInit() { 
+    this.loading.presentLoading();
   const token  = this.filtres.getToken().then(data =>{
 
   })
 
     this.http.get(this.url).subscribe((data: any)=>{
+     
   
       if(data){
          Object.keys(data.data).forEach((e)=>{
@@ -47,6 +49,8 @@ export class LocationsPage implements OnInit {
       }
      
       
+    }, err => {
+      this.loading.closeloading()
     })
   }
   
@@ -59,8 +63,7 @@ export class LocationsPage implements OnInit {
     let tem = ev.target.value;  
    
      if(tem && tem.trim() != ''){
-      let val = ev.target.value[0].toUpperCase()+ 
-      tem.slice(1);
+      let val = ev.target.value.toLowerCase();
       let valTwo = ev.target.value;
        this.datos = []
        let tempral = []
@@ -68,7 +71,7 @@ export class LocationsPage implements OnInit {
        
         for(let j=0;j< this.temDatos[i].City.length;j++){
       
-           if(this.temDatos[i].City[j].cityName.includes(`${val}`)  ){   
+           if(this.temDatos[i].City[j].cityName.toLowerCase().includes(`${val}`)  ){   
               this.buscar = true;
            tempral.push(this.temDatos[i]);
             break

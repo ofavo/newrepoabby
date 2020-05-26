@@ -53,12 +53,12 @@ export class PresentationsPage implements OnInit {
   serchProduct(ev: any){
     let tem = ev.target.value;  
      if(tem && tem.trim() != ''){
-      let val = ev.target.value;
+      let val = ev.target.value.toLowerCase();
       let valTwo = ev.target.value;
        this.datos = []
        let tempral = []
       for(let i=0; i< this.products.length;i++) {
-           if(this.products[i].presentationName.includes(`${val}`)  ){   
+           if(this.products[i].product_name.toLowerCase().includes(`${val}`)  ){   
              tempral.push(this.products[i]);
            }
          if(i+1 == this.products.length){
