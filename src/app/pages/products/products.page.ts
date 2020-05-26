@@ -74,13 +74,13 @@ export class ProductsPage implements OnInit {
     let tem = ev.target.value;  
    
      if(tem && tem.trim() != ''){
-      let val = ev.target.value;
+      let val = ev.target.value.toLowerCase();
       let valTwo = ev.target.value;
        this.datos = []
        let tempral = []
       for(let i=0; i< this.temDatos.length;i++) {
        
-           if(this.temDatos[i].productName.includes(`${val}`)  ){   
+           if(this.temDatos[i].product_name.toLowerCase().includes(`${val}`)  ){   
           
              tempral.push(this.temDatos[i]);
 

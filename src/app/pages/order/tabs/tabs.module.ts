@@ -13,10 +13,11 @@ import { TabsPage } from './tabs.page';
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
-    DetailsComponent
+    
   ],
+  
   entryComponents: [DetailsComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [TabsPage]
+  declarations: [TabsPage,DetailsComponent]
 })
 export class TabsPageModule {}
