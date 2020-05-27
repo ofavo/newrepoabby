@@ -86,4 +86,11 @@ ion-title {
 
 .presentations-label {
     width: 100%;
+    --border-style: none;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+}
+
+ion-label h5 {
+    font-size: 16px;
 }
