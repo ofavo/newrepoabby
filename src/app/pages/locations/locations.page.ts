@@ -28,29 +28,28 @@ export class LocationsPage implements OnInit {
     }
 
   ngOnInit() { 
-    this.loading.presentLoading();
+   
   const token  = this.filtres.getToken().then(data =>{
 
   })
 
     this.http.get(this.url).subscribe((data: any)=>{
-     
+      this.loading.presentLoading();
   
       if(data){
+        this.loading.closeloading()
          Object.keys(data.data).forEach((e)=>{
         if(Object.keys(data.data[e].City).length > 0){
           this.temDatos.push(data.data[e])
          
         } 
       })
-      setTimeout(() => {
-        this.loading.closeloading()
-      }, 200);
+  
       }
      
       
     }, err => {
-      this.loading.closeloading()
+     this.loading.closeloading()
     })
   }
   

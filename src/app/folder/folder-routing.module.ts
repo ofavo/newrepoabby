@@ -49,7 +49,11 @@ const routes: Routes = [
     {
       path: 'directions-envio',
       loadChildren: () => import('../pages/directions-envio/directions-envio.module').then( m => m.DirectionsEnvioPageModule)
-    }
+    },
+    {
+      path: 'payment',
+      loadChildren: () => import('../pages/payment/payment.module').then( m => m.PaymentPageModule)
+    },
   
     ]
   }

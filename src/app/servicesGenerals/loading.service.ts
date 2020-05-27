@@ -9,16 +9,18 @@ export class LoadingService {
   constructor(public loadingController: LoadingController) { }
 
   async presentLoading() {
+    /** 
     const loading = await this.loadingController.create({
       message: 'Please wait...',
       
     });
-    await loading.present();
+    await loading.present();*/
 
 
   }
   async closeloading(){
+    /** 
      this.loadingController.dismiss();
-    console.log('Loading dismissed!');
+    console.log('Loading dismissed!');*/
   }
 }

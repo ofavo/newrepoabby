@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="payment-title">Formalizar compra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="payment-env">
+    <ion-label>PEDIDO</ion-label>
+  </div>
+  <ion-item>
+    <ion-icon name="cart-outline"></ion-icon>
+    <ion-label class="payment-label">Nº de productos:</ion-label>
+    <ion-label class="payment-label2">20</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="cash-outline"></ion-icon>
+    <ion-label class="payment-label">Monto a pagar:</ion-label>
+    <ion-label class="payment-label2">3000$</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="bicycle-outline"></ion-icon>
+    <ion-label class="payment-label">Usuario de destino:</ion-label>
+    <ion-label class="payment-label2">Casa 2</ion-label>
+  </ion-item>
+  <div class="payment-text">
+    <ion-label>
+      Seleccione la modalidad de pago
+    </ion-label>
+  </div>
+  <ion-item class="payment-select">
+    <ion-icon name="wallet-outline"></ion-icon>
+    <ion-label class="payment-label">Modalidad</ion-label>
+    <ion-select (ionChange)="onChangeSelect($event.target.value)" ok-text="Ok" cancel-text="Cancelar">
+      <ion-select-option value="uno">PayPal</ion-select-option>
+      <ion-select-option value="dos">Tarjeta de crédito</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div class="payment-btn">
+    <ion-button class="payment-btn-two"color="primary">Continuar</ion-button>
+  </div>
+</ion-content>
