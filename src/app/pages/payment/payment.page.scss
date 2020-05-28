@@ -3,13 +3,18 @@
 }
 
 .payment-text {
-    margin: 2.5rem 0.7rem 1rem 0.7rem;
+    margin: 2.2rem 0 1.3rem 0;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #484848;
 }
 
 .payment-env {
-    margin: 1rem;
+    margin: 1.2rem 0 0.4rem 0;
     font-weight: 600;
     text-align: center;
+    color: #484848;
 }
 
 .payment-label {
@@ -36,4 +41,8 @@
 .payment-btn-two {
     width: 95%;
     --border-radius: 50px;
+}
+
+.payment-select-two {
+    margin-top: 0.6rem;
 }

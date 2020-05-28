@@ -34,6 +34,11 @@ export class FolderPage implements OnInit {
       url: '/folder/orders/tab1',
       icon: 'cart'
     },
+    {
+      title: 'Cerrar sesión',
+      url: '',
+      icon: 'log-out'
+    },
     /** 
     {
       title: 'Delivery',

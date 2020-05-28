@@ -32,11 +32,19 @@
     <ion-icon name="wallet-outline"></ion-icon>
     <ion-label class="payment-label">Modalidad</ion-label>
     <ion-select (ionChange)="onChangeSelect($event.target.value)" ok-text="Ok" cancel-text="Cancelar">
-      <ion-select-option value="uno">PayPal</ion-select-option>
-      <ion-select-option value="dos">Tarjeta de crédito</ion-select-option>
+      <ion-select-option value="paypal">PayPal</ion-select-option>
+      <ion-select-option value="tdc">Tarjeta de crédito</ion-select-option>
     </ion-select>
   </ion-item>
-  <div class="payment-btn">
+  <ion-item class="payment-select-two" *ngIf="select">
+    <ion-icon name="card-outline"></ion-icon>
+    <ion-label class="payment-label">Tarjeta de crédito</ion-label>
+    <ion-select (ionChange)="onChangeSelectTdc($event.target.value)" ok-text="Ok" cancel-text="Cancelar">
+      <ion-select-option value="uno">Tarjeta 1</ion-select-option>
+      <ion-select-option value="dos">Tarjeta 2</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div class="payment-btn" *ngIf="button">
     <ion-button class="payment-btn-two"color="primary">Continuar</ion-button>
   </div>
 </ion-content>
