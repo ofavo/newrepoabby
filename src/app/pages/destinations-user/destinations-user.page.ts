@@ -58,7 +58,7 @@ export class DestinationsUserPage implements OnInit {
     if(respuesta == 'Error'){
       alert('Error al cargar pedido')
     }else{
-      this.ruter.navigateByUrl('/folder/orders/tab1')
+      this.ruter.navigateByUrl('/folder/payment')
     }
   }
 

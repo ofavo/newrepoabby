@@ -1,0 +1,48 @@
+.payment-title {
+    text-align: center;
+}
+
+.payment-text {
+    margin: 2.2rem 0 1.3rem 0;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #484848;
+}
+
+.payment-env {
+    margin: 1.2rem 0 0.4rem 0;
+    font-weight: 600;
+    text-align: center;
+    color: #484848;
+}
+
+.payment-label {
+    margin-left: 1rem;
+}
+
+.payment-select {
+    --background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(240,240,240,1) 100%);
+}
+
+.payment-label2 {
+    text-align: right;
+}
+
+.payment-btn {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 1rem 0;
+    background: #fff;
+}
+
+.payment-btn-two {
+    width: 95%;
+    --border-radius: 50px;
+}
+
+.payment-select-two {
+    margin-top: 0.6rem;
+}

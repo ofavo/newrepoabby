@@ -51,7 +51,7 @@
   <div class="destinations-btn-d">
     <ion-button (click)="createDireccrion()">Crear dirección de envio</ion-button>
   </div>
-  <div class="destinations-btn">
+  <div *ngIf="select" class="destinations-btn">
     <ion-button class="destinations-btn-two"color="primary" (click)="sentDirecction()">Continuar</ion-button>
   </div>
 </ion-content>
