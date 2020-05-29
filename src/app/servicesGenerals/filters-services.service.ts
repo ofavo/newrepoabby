@@ -97,5 +97,23 @@ export class FiltersServicesService {
   async removeCity() {
     await Storage.remove({ key: 'city' });
   }
+  async getIdUsers() {
+    const { value } = await Storage.get({ key: 'idusers' });
+   
+    let envio : string = value
+  
+    return envio.toString();
+  }
+
+  async setIdUsers(value: any){
+    await Storage.set({
+      key: 'idusers',
+      value: value
+    });
+  }
+
+  async removeIdUsers() {
+    await Storage.remove({ key: 'idusers' });
+  }
 
 }

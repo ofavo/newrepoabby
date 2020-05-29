@@ -59,6 +59,10 @@ export class FolderPage implements OnInit {
       }
       this.http.getUser(this.url, {headers: headers}).subscribe((data: any)=>{
         this.users = data
+        if(this.users.id){
+          this.filters.setIdUsers(this.users.id)
+        }
+        
       })
     })
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -9,7 +10,7 @@ export class PaymentPage implements OnInit {
   public select : boolean = false;
   public button : boolean = false;
 
-  constructor() { }
+  constructor(public ruter: Router) { }
 
   ngOnInit() {
   }
@@ -28,6 +29,9 @@ export class PaymentPage implements OnInit {
     if(e){
       this.button = true;
     }
+  }
+  goOrders(){
+    this.ruter.navigateByUrl('/folder/orders/tab1')
   }
 
 }
