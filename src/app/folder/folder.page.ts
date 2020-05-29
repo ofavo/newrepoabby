@@ -20,7 +20,7 @@ export class FolderPage implements OnInit {
       icon: 'person'
     },
     {
-      title: 'Direcioines de envio',
+      title: 'Direcciones de envio',
       url: '/folder/directions-envio',
       icon: 'location'
     },
@@ -48,6 +48,7 @@ export class FolderPage implements OnInit {
   
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public photoProfile: any;
 
   constructor(private activatedRoute: ActivatedRoute, public filters : FiltersServicesService, public http: FolderServicesService) { }
 
@@ -59,10 +60,10 @@ export class FolderPage implements OnInit {
       }
       this.http.getUser(this.url, {headers: headers}).subscribe((data: any)=>{
         this.users = data
+        this.photoProfile = data.profile_image
         if(this.users.id){
           this.filters.setIdUsers(this.users.id)
         }
-        
       })
     })
 

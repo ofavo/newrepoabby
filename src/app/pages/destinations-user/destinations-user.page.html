@@ -19,6 +19,7 @@
       <ion-select-option value="tres">Casa 3</ion-select-option>
       <ion-select-option value="cuatro">Casa 4</ion-select-option>
       <ion-select-option value="cinco">Casa 5</ion-select-option>
+      <ion-select-option value="new">Crear dirección</ion-select-option>
     </ion-select>
   </ion-item>
   <div *ngIf="select">
@@ -47,10 +48,21 @@
       <ion-label class="destinations-label">Casa:</ion-label>
       <ion-label class="destinations-label2">Nº 123</ion-label>
     </ion-item>
+    <ion-item>
+      <ion-icon name="camera-outline"></ion-icon>
+      <ion-label class="destinations-label">Recibir fotografía de la entrega</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="document-attach-outline"></ion-icon>
+      <ion-label class="destinations-label">Recibir factura al correo</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
   </div>
-  <div class="destinations-btn-d">
+  <div *ngIf="!select" class="destinations-btn-d">
     <ion-button (click)="createDireccrion()">Crear dirección de envio</ion-button>
   </div>
+  <div class="destinations-div"></div>
   <div *ngIf="select" class="destinations-btn">
     <ion-button class="destinations-btn-two"color="primary" (click)="sentDirecction()">Continuar</ion-button>
   </div>

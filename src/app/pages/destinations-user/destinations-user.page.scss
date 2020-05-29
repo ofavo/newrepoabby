@@ -11,7 +11,7 @@ ion-label {
     position: fixed;
     width: 100%;
     bottom: 0;
-    padding: 1rem 0;
+    padding: 0 0 1rem 0;
     background: #fff;
 }
 
@@ -51,4 +51,8 @@ ion-label {
 
 .destinations-label2 {
     text-align: right;
+}
+
+.destinations-div {
+    height: 8vh;
 }

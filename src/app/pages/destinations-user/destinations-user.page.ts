@@ -69,7 +69,7 @@ export class DestinationsUserPage implements OnInit {
   }
 
   onChangeSelect(e) {
-    if(e){
+    if(e != 'new'){
       this.select = true;
       this.presentToast()
     } else {
