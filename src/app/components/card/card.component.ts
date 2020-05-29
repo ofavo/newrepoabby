@@ -24,7 +24,7 @@ export class CardComponent implements OnInit {
     observations: "",
     qr: "",
     account: 1,
-    userid: "p05",
+    userid: "",
     detail:[
       
     ]
@@ -64,14 +64,16 @@ export class CardComponent implements OnInit {
   }
 
   totalAmount(){
-    if(this.products.length > 0){
+    this.total = 0;
+    this.subtotal = 0;
       for(const i in this.products){
-        this.subtotal = this.products[i].quantity * parseInt(this.products[i].salePrice);
-        this.total = this.subtotal;
+       
+        this.subtotal = parseInt(this.products[i].quantity) * parseFloat(this.products[i].salePrice);
+        this.total = this.total + this.subtotal;
      
       
       } return this.total
-    }
+   
     
   }
 
@@ -81,7 +83,7 @@ export class CardComponent implements OnInit {
     for(const i in this.products){
       if(this.products[i].id == id){
         this.products[i].quantity = this.products[i].quantity + 1;
-        
+        return this.totalAmount()
       }
     }
   }
@@ -91,7 +93,7 @@ export class CardComponent implements OnInit {
       if(this.products[i].id == id){
         if(this.products[i].quantity > 1){
           this.products[i].quantity = this.products[i].quantity - 1;
-         
+          return this.totalAmount()
         }
       }
     }
