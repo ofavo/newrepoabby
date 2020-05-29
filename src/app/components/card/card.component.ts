@@ -15,10 +15,11 @@ export class CardComponent implements OnInit {
   public total : number = 0;
   public subtotal : number = 0;
   public products : any = [];
+  public user : string = '';
   public envio : any = {
     code:"",
     user_buyer_id:1,
-    uder_receive_id: null,
+    user_receive_id: null,
     amount: 0,
     observations: "",
     qr: "",
@@ -41,6 +42,11 @@ export class CardComponent implements OnInit {
   
   ngOnInit() {
     this.products = this.navparams.get('items')
+    this.filters.getIdUsers().then((data)=>{
+      this.user = data
+      this.envio.userid =data;
+      this.envio.user_buyer_id= data;
+    })
     console.log(this.products)
   }
 
@@ -101,7 +107,7 @@ export class CardComponent implements OnInit {
           quantity: this.products[i].quantity,
           price: this.products[i].salePrice,
           amount: parseInt(this.products[i].quantity)* parseInt(this.products[i].salePrice),
-          userid: this.products[i].userId
+          userid: this.user
         }
         this.envio.detail.push(valor)
         if((i + 1) === this.products.length ){

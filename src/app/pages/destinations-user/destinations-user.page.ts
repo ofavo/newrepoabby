@@ -26,6 +26,9 @@ export class DestinationsUserPage implements OnInit {
    this.filters.getItemTraking().then((data: any) =>{
      this.datos = JSON.parse(data.value)
      console.log(this.datos)
+   });
+   this.filters.getIdUsers().then((data: any)=>{
+     this.id = data
    })
   }
   createDireccrion(){
@@ -52,14 +55,17 @@ export class DestinationsUserPage implements OnInit {
       tracking_user_id: this.datos.traking.tracking_user_id,
       observations: "",
       accout: 1,
-      userid:this.datos.userid
+      userid:this.id
     }
     let respuesta : any= this.http.post(this.url,evn)
-    if(respuesta == 'Error'){
+    setTimeout(() => {
+       if(respuesta == 'Error'){
       alert('Error al cargar pedido')
     }else{
       this.ruter.navigateByUrl('/folder/payment')
     }
+    }, 200);
+   
   }
 
   onChangeSelect(e) {
