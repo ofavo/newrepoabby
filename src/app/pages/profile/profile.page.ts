@@ -43,6 +43,7 @@ export class ProfilePage implements OnInit {
       this.http.getUser(this.url, {headers: headers}).subscribe((data: any)=>{
         this.users = data
         this.id = data.id
+        this.photoProfile = data.profile_image
       })
     })
   }
@@ -52,6 +53,7 @@ export class ProfilePage implements OnInit {
       firstname : this.firstname,
       lastname : this.lastname,
       email : this.email,
+      photo: this.photoProfile
     }
     this.filters.getToken().then((envio)=>{
       const headers = {
