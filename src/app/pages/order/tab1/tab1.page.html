@@ -11,19 +11,10 @@
 
 <ion-content [fullscreen]="true">
 
-    <ion-list>
-        <ion-item (click)="presentModal()">
-          <ion-label>Pedido Casa 1</ion-label>
+    <ion-list *ngFor="let dato of datos; let index=index">
+        <ion-item (click)="presentModal(dato.id, dato.Amount, dato.details, dato.observations, 
+        dato.start_date_time, dato.tracking, dato.finish_date_time)">
+          <ion-label>Pedido {{index+1}}</ion-label>
         </ion-item >
-        <ion-item (click)="presentModal()">
-          <ion-label>Pedido Casa 2</ion-label>
-        </ion-item >
-        <ion-item (click)="presentModal()">
-          <ion-label>Pedido Casa 3</ion-label>
-        </ion-item> 
-        <ion-item (click)="presentModal()">
-          <ion-label>Pedido Casa 4</ion-label>
-        </ion-item>
-    
       </ion-list>
 </ion-content>

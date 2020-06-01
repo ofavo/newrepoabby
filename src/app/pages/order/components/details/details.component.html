@@ -1,11 +1,45 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-button class="card-back" color="primary" slot="start" (click)="dismiss()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-    <ion-title class="card-title">Detalles del Envio</ion-title>
+    <ion-button class="details-back" color="primary" slot="start" (click)="dismiss()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+    <ion-title class="details-title">Detalles del Envio</ion-title>
    
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-item class="details-m">
+    <ion-icon class="details-icon" name="calendar-outline"></ion-icon>
+    <ion-label><b>Fecha del pedido:</b> {{order.start_date_time}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="details-icon" name="arrow-forward-circle-outline"></ion-icon>
+    <ion-label><b>Estado:</b> {{order.tracking.state_name}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon class="details-icon" name="refresh-outline"></ion-icon>
+    <ion-label>
+      <p><b>Ultima actualización:</b> {{date}}</p>
+      <p><b>Hora:</b> {{update}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-list>
+    <ion-title class="details-products">
+      Productos
+    </ion-title>
+    <ion-item *ngFor="let detail of details">
+      <ion-thumbnail button slot="start">
+        <img [src]="detail.presentation_photo_mobile" />
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap">
+        <p><b>{{detail.productName}}</b></p>
+        <p>{{detail.presentationName}}</p>
+      </ion-label>
+      <ion-note slot="end">{{detail.quantity}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap details-total"><b>Total:</b></ion-label>
+      <ion-label>{{order.amount}}</ion-label>
+    </ion-item>
+  </ion-list>
 
  
 </ion-content>
