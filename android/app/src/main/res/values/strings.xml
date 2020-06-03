@@ -3,5 +3,10 @@
     <string name="app_name">ionicApp</string>
     <string name="title_activity_main">ionicApp</string>
     <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="custom_url_scheme">com.getcapacitor.starter</string>
+
+
+
+
+
 </resources>

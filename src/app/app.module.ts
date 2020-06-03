@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DirectionsComponent } from './components/directions/directions.component';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent, CardComponent,DirectionsComponent],
@@ -24,6 +24,7 @@ import { DirectionsComponent } from './components/directions/directions.componen
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
+    Geolocation,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

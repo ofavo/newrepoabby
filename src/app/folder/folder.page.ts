@@ -39,12 +39,12 @@ export class FolderPage implements OnInit {
       url: '',
       icon: 'log-out'
     },
-    /** 
+   
     {
       title: 'Delivery',
       url: '/folder/delivery/process',
       icon: 'bicycle'
-    },*/
+    },
   
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];

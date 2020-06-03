@@ -21,12 +21,12 @@ export class DirectionsEnvioPage implements OnInit {
   ngOnInit() {
     this.filters.getToken().then((envio)=>{
       console.log('token: ',envio)
-      const headers = {
+      let headers = {
         'Content-Type' : 'application/json',
         'Accept-Language': 'es',
         'Authorization' : envio
       }
-      this.http.getAddress(this.url, {headers: headers}).subscribe((data: any)=>{
+      this.http.getAddress(this.url, headers).subscribe((data: any)=>{
         console.log(data)
       })
     })
