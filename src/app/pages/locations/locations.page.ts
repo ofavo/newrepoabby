@@ -28,36 +28,30 @@ export class LocationsPage implements OnInit {
     }
 
   ngOnInit() { 
-   
   const token  = this.filtres.getToken().then(data =>{
-
   })
-
-    this.http.get(this.url).subscribe((data: any)=>{
-      this.loading.presentLoading();
-  
-      if(data){
-        this.loading.closeloading()
-         Object.keys(data.data).forEach((e)=>{
+  this.http.get(this.url).subscribe((data: any)=>{
+    console.log('data:', data.data)
+    this.loading.presentLoading();
+    if(data){
+      this.loading.closeloading()
+      Object.keys(data.data).forEach((e)=>{
         if(Object.keys(data.data[e].City).length > 0){
           this.temDatos.push(data.data[e])
-         
+          this.filtres.setCities(JSON.stringify(this.temDatos));
         } 
       })
-  
-      }
-     
-      
+    }
     }, err => {
      this.loading.closeloading()
     })
   }
   
   goCity(id,name,city){
-
     this.filtres.setCity(city);
     this.ruter.navigate(['/folder','products',`${id}`,`${name}`])
   }
+  
    serchLocations(ev: any){
     let tem = ev.target.value;  
    

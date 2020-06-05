@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FiltersServicesService} from '../servicesGenerals/filters-services.service';
 import { FolderServicesService } from '../servicesGenerals/folder-services.service';
 import { environment } from '../../environments/environment';
@@ -35,12 +35,6 @@ export class FolderPage implements OnInit {
       icon: 'cart'
     },
     {
-      title: 'Cerrar sesión',
-      url: '',
-      icon: 'log-out'
-    },
-   
-    {
       title: 'Delivery',
       url: '/folder/delivery/process',
       icon: 'bicycle'
@@ -50,7 +44,7 @@ export class FolderPage implements OnInit {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   public photoProfile: any;
 
-  constructor(private activatedRoute: ActivatedRoute, public filters : FiltersServicesService, public http: FolderServicesService) { }
+  constructor(private activatedRoute: ActivatedRoute, public ruter: Router, public filters : FiltersServicesService, public http: FolderServicesService) { }
 
   ngOnInit() {
     this.filters.getToken().then((envio)=>{
@@ -68,5 +62,10 @@ export class FolderPage implements OnInit {
     })
 
   }
+
+  logOut = () => {
+    localStorage.clear();
+    this.ruter.navigate(['/login'])
+  };
 
 }

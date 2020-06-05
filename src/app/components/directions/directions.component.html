@@ -8,88 +8,21 @@
 <ion-content fullscreen>
    <ion-list>
         <ion-item>
-          <ion-icon name="globe-outline"></ion-icon>
-          <ion-label>Pais</ion-label>
-          <ion-select value="1" >
-            
-            <ion-select-option value="1">Venezuela</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon name="navigate-circle-outline"></ion-icon>
-          <ion-label>Estado</ion-label>
-          <ion-select >
-            <ion-select-option value="nes">NES</ion-select-option>
-            <ion-select-option value="n64">Nintendo64</ion-select-option>
-            <ion-select-option value="ps">PlayStation</ion-select-option>
-            <ion-select-option value="genesis">Sega Genesis</ion-select-option>
-            <ion-select-option value="saturn">Sega Saturn</ion-select-option>
-            <ion-select-option value="snes">SNES</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <ion-item>
           <ion-icon name="business-outline"></ion-icon>
           <ion-label>Ciudad</ion-label>
           <ion-select>
-            <ion-select-option value="enable">Enable</ion-select-option>
-            <ion-select-option value="mute">Mute</ion-select-option>
-            <ion-select-option value="mute_week">Mute for a week</ion-select-option>
-            <ion-select-option value="mute_year">Mute for a year</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon name="trail-sign-outline"></ion-icon>
-          <ion-label>Calle</ion-label>
-          <ion-select ok-text="Okay" cancel-text="Nah">
-            <ion-select-option value="dos">DOS</ion-select-option>
-            <ion-select-option value="lunix">Linux</ion-select-option>
-            <ion-select-option value="mac7">Mac OS 7</ion-select-option>
-            <ion-select-option value="mac8">Mac OS 8</ion-select-option>
-            <ion-select-option value="win3.1">Windows 3.1</ion-select-option>
-            <ion-select-option value="win95">Windows 95</ion-select-option>
-            <ion-select-option value="win98">Windows 98</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon name="walk-outline"></ion-icon>
-          <ion-label>Redoma </ion-label>
-          <ion-select value="03">
-            <ion-select-option value="01">Alice in Chains</ion-select-option>
-            <ion-select-option value="02">Green Day</ion-select-option>
-            <ion-select-option value="03">Nirvana</ion-select-option>
-            <ion-select-option value="04">Pearl Jam</ion-select-option>
-            <ion-select-option value="05">Smashing Pumpkins</ion-select-option>
-            <ion-select-option value="06">Soundgarden</ion-select-option>
-            <ion-select-option value="07">Stone Temple Pilots</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon name="home-outline"></ion-icon>
-          <ion-label>casa</ion-label>
-          <ion-select value="12">
-            <ion-select-option value="01">January</ion-select-option>
-            <ion-select-option value="02">February</ion-select-option>
-            <ion-select-option value="03">March</ion-select-option>
-            <ion-select-option value="04">April</ion-select-option>
-            <ion-select-option value="05">May</ion-select-option>
-            <ion-select-option value="06">June</ion-select-option>
-            <ion-select-option value="07">July</ion-select-option>
-            <ion-select-option value="08">August</ion-select-option>
-            <ion-select-option value="09">September</ion-select-option>
-            <ion-select-option value="10">October</ion-select-option>
-            <ion-select-option value="11">November</ion-select-option>
-            <ion-select-option value="12">December</ion-select-option>
+            <ion-select-option *ngFor="let cit of city">{{cit.id}}</ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
           <ion-icon name="navigate-outline"></ion-icon>
-          <ion-textarea placeholder="Completa tu dirección"></ion-textarea>
+          <ion-textarea placeholder="Dirección"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-textarea placeholder="Nombre"></ion-textarea>
         </ion-item>
         
         <ion-item>
