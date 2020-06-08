@@ -60,25 +60,25 @@ export class DirectionsComponent implements OnInit {
   }
 
   sentData() {
-    console.log(this.alias)
+   
     let env = {
       alias : this.alias,
 	    phone_number: this.phone_number,
       address_components : this.address_components,
       // geographical_locations : "275"
     }
-    console.log(env.alias)
-    this.filters.getToken().then((envio)=>{
-      const headers = {
-        'Content-Type' : 'application/json',
-        'Authorization' : envio
-      }
-      this.http.postDirections(this.url,env,{headers: headers}).subscribe((data: any)=>{
-        console.log('envio: ', data)
-      },err =>{
-        console.log('error: ', err)
-      })
-    })
+    console.log(env)
+    //this.filters.getToken().then((envio)=>{
+    //  const headers = {
+    //    'Content-Type' : 'application/json',
+    //    'Authorization' : envio
+    //  }
+    //  this.http.postDirections(this.url,env,{headers: headers}).subscribe((data: any)=>{
+    //    console.log('envio: ', data)
+    //  },err =>{
+    //    console.log('error: ', err)
+    //  })
+    //})
   }
   
   dismiss() {

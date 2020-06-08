@@ -12,11 +12,13 @@ import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DirectionsComponent } from './components/directions/directions.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, CardComponent,DirectionsComponent],
   entryComponents: [CardComponent, DirectionsComponent],
   imports: [
+    FormsModule, ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),
