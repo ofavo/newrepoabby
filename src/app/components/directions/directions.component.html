@@ -11,27 +11,27 @@
           <ion-icon name="business-outline"></ion-icon>
           <ion-label>Ciudad</ion-label>
           <ion-select>
-            <ion-select-option *ngFor="let data of city">{{data.City.cityName}}</ion-select-option>
+            <ion-select-option *ngFor="let data of city">{{data.cityName}}</ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
           <ion-icon name="navigate-outline"></ion-icon>
-          <ion-textarea placeholder="Dirección"></ion-textarea>
+          <ion-textarea [(ngModel)]="address_components" placeholder="Dirección"></ion-textarea>
         </ion-item>
 
         <ion-item>
           <ion-icon name="person-outline"></ion-icon>
-          <ion-textarea placeholder="Nombre"></ion-textarea>
+          <ion-input [(ngModel)]="alias" placeholder="Nombre"></ion-input>
         </ion-item>
         
         <ion-item>
           <ion-icon name="call-outline"></ion-icon>
-          <ion-input type="number" placeholder="Teléfono"></ion-input>
+          <ion-input [(ngModel)]="phone_number" type="number" placeholder="Teléfono"></ion-input>
         </ion-item>
       </ion-list>
       <div class="directions-total">
-        <ion-button class="directions-buy"color="primary" >
+        <ion-button (click)="sentData()" class="directions-buy"color="primary" >
           Guardar
         </ion-button>
       </div>

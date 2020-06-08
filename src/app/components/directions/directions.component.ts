@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 export class DirectionsComponent implements OnInit {
   public alias : string = "";
   public phone_number : string = "";
-  public address_components : any = {};
+  public address_components : string = "";
   public pais: string = "";
   public state : string = "";
   public url : string = environment.apia + "users/addresses";
@@ -28,25 +28,46 @@ export class DirectionsComponent implements OnInit {
       this.cities = JSON.parse(data)
       for(let i=0; i< this.cities.length;i++){
         for(let j=0;j< this.cities[i].City.length;j++){
-          if(this.cities[i].City[j].cityName){
-            this.city.push(this.cities[i]);
-            console.log('ciudades1', this.city[i])
-            console.log('ciudades2', this.city[i].City[j].cityName)
-          }
+        
+            let val = false
+            if( this.city.length == 0){
+              this.city.push(this.cities[i].City[j]);
+            }else{
+              for(let c = 0; c < this.city.length; c++){
+              
+                if (this.city[c].cityName == this.cities[i].City[j].cityName){
+                  val = true
+                }
+              if(this.city.length  == c + 1  ){
+               
+                  if(!val){
+                    this.city.push(this.cities[i].City[j]);
+                    console.log('ciudades1', this.city[i])
+                  }
+              }
+            }
+            }
+            
+            
+            
+        
           
         } 
+       
       }
       console.log('ciudades3', this.cities)
      })
   }
 
   sentData() {
+    console.log(this.alias)
     let env = {
       alias : this.alias,
 	    phone_number: this.phone_number,
       address_components : this.address_components,
-      geographical_locations : "275"
+      // geographical_locations : "275"
     }
+    console.log(env.alias)
     this.filters.getToken().then((envio)=>{
       const headers = {
         'Content-Type' : 'application/json',
