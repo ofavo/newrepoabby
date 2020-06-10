@@ -65,15 +65,15 @@ export class DirectionsComponent implements OnInit {
     }
     console.log(env)
     this.filters.getToken().then((envio)=>{
-     const headers = {
-       'Content-Type' : 'application/json',
-       'Authorization' : envio
-     }
-     this.http.postDirections(this.url,env,{headers: headers}).subscribe((data: any)=>{
-       console.log('envio: ', data)
-     },err =>{
-       console.log('error: ', err)
-     })
+      const headers = {
+        'Content-Type' : 'application/json',
+        'Authorization' : envio
+      }
+      this.http.postDirections(this.url,env,{headers: headers}).subscribe((data: any)=>{
+        console.log('envio: ', data)
+      },err =>{
+        console.log('error: ', err)
+      })
     })
   }
   
