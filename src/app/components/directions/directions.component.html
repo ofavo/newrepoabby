@@ -10,8 +10,8 @@
         <ion-item>
           <ion-icon name="business-outline"></ion-icon>
           <ion-label>Ciudad</ion-label>
-          <ion-select>
-            <ion-select-option *ngFor="let data of city">{{data.cityName}}</ion-select-option>
+          <ion-select [(ngModel)]="geographical_locations">
+            <ion-select-option *ngFor="let data of city" [value]="data.cityId">{{data.cityName}}</ion-select-option>
           </ion-select>
         </ion-item>
 

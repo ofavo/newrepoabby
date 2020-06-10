@@ -11,4 +11,8 @@ export class DirectionsServiceService {
   postDirections(url,env,headers){
     return this.http.post(url,env,headers);
   }
+
+  getAddress(url, headers){
+    return this.http.get(url, {headers:headers})
+  }
 }

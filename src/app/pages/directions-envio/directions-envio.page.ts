@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./directions-envio.page.scss'],
 })
 export class DirectionsEnvioPage implements OnInit {
-  public city: string = '';
+  public datos : any = [];
   public url : string = environment.apia + "users/addresses";
   constructor(public modalController: ModalController, public filters : FiltersServicesService, public http: DirectionsEnvioService) {
    
@@ -20,21 +20,31 @@ export class DirectionsEnvioPage implements OnInit {
 
   ngOnInit() {
     this.filters.getToken().then((envio)=>{
-      console.log('token: ',envio)
       let headers = {
         'Content-Type' : 'application/json',
         'Accept-Language': 'es',
         'Authorization' : envio
       }
       this.http.getAddress(this.url, headers).subscribe((data: any)=>{
-        console.log(data)
+        this.datos = data
       })
     })
   }
 
-  async presentModal() {
+  async presentModal(id, address_components, alias, geographical_locations,  phone_number) {
+    let datos = {
+      id : id,
+      phone: phone_number,
+      address : address_components,
+      alias : alias,
+      geographical: geographical_locations
+    }
+    console.log('datos2', datos)
     const modal = await this.modalController.create({
-      component: DirectionsComponent
+      component: DirectionsComponent,
+      componentProps: {
+        datos : datos
+      }
     });
     return await modal.present();
   }

@@ -3,11 +3,17 @@
       <ion-buttons slot="start">
           <ion-menu-button autoHide="false"></ion-menu-button>
         </ion-buttons>
-    <ion-title>Direciones de Envio</ion-title>
+    <ion-title>Direcciones de envío</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
+  <ion-list *ngFor="let dato of datos">
+    <ion-item button (click)="presentModal(dato.id, dato.address_components, dato.alias, dato.geographical_locations, 
+    dato.phone_number)">
+      <ion-label>Dirección de {{dato.alias}}</ion-label>
+    </ion-item >
+  </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button  (click)="presentModal()">
        <ion-icon name="add-outline"></ion-icon>
